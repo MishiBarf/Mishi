@@ -37,7 +37,7 @@
       <input type="number" placeholder="Age" class="input input-bordered w-full max-w-xs" min="0" bind:value={age} />
     </div>
 
-    <select class="select w-full max-w-xs" bind:value={sex}>
+    <select class="select w-full max-w-xs select-bordered" bind:value={sex}>
       <option disabled selected>Sex</option>
       <option>Female</option>
       <option>Male</option>
