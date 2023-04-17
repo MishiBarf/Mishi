@@ -1,4 +1,7 @@
-const twoDecimals = (x: number) => Math.round(x * 100) / 100;
+const smartKg = (x: number): IntakeType => {
+  return Math.round(x);
+};
+
 
 export function calculateCatIntakes({ sex, age, weight }: CalculatorInput): CalculatorOutput {
   let dailyMeatIntake = 0;
@@ -23,11 +26,11 @@ export function calculateCatIntakes({ sex, age, weight }: CalculatorInput): Calc
   }
 
   return {
-    dailyMeatIntake,
-    dailyBoneIntake: twoDecimals(dailyMeatIntake * 0.1),
-    dailyOilIntake: twoDecimals(dailyMeatIntake * 0.05),
-    dailyEggIntake: twoDecimals(dailyMeatIntake * 0.05),
-    dailyOffalIntake: twoDecimals(dailyMeatIntake * 0.05)
+    dailyMeatIntake: smartKg(dailyMeatIntake),
+    dailyBoneIntake: smartKg(dailyMeatIntake * 0.1),
+    dailyOilIntake: smartKg(dailyMeatIntake * 0.05),
+    dailyEggIntake: smartKg(dailyMeatIntake * 0.05),
+    dailyOffalIntake: smartKg(dailyMeatIntake * 0.05)
   };
 
 }
@@ -38,11 +41,13 @@ export interface CalculatorInput {
   sex: "male" | "female";
 }
 
+export type IntakeType = number;
+
 export interface CalculatorOutput {
-  dailyMeatIntake: number;
-  dailyBoneIntake: number;
-  dailyOilIntake: number;
-  dailyEggIntake: number;
-  dailyOffalIntake: number;
+  dailyMeatIntake: IntakeType;
+  dailyBoneIntake: IntakeType;
+  dailyOilIntake: IntakeType;
+  dailyEggIntake: IntakeType;
+  dailyOffalIntake: IntakeType;
 }
 

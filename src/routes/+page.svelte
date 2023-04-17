@@ -1,4 +1,5 @@
 <script lang="ts">
+  import IntakeDisplay from "../components/IntakeDisplay.svelte";
   import { calculateCatIntakes, type CalculatorOutput } from "../core/calculator.ts";
 
   let disableButton;
@@ -58,45 +59,11 @@
   <div class="grid grid-cols-1 gap-1 pt-24">
     <div class="stats shadow mx-auto content-center stats-vertical lg:stats-horizontal">
 
-      <div class="stat">
-        <div class="stat-title">Daily meat intake</div>
-        <div class="stat-value">
-          {result.dailyMeatIntake}
-          <span class="text-right">g</span>
-        </div>
-      </div>
-      <div class="stat">
-        <div class="stat-title">Daily bone intake</div>
-        <div class="stat-value">
-          {result.dailyBoneIntake}
-          <span class="text-right">g</span>
-        </div>
-      </div>
-
-      <div class="stat">
-        <div class="stat-title">Daily oil intake</div>
-        <div class="stat-value">
-          {result.dailyOilIntake}
-          <span class="text-right">g</span>
-        </div>
-      </div>
-
-      <div class="stat">
-        <div class="stat-title">Daily egg intake</div>
-        <div class="stat-value">
-          {result.dailyEggIntake}
-          <span class="text-right">g</span>
-        </div>
-      </div>
-
-      <div class="stat">
-        <div class="stat-title">Daily offal intake</div>
-        <div class="stat-value">
-          {result.dailyOffalIntake}
-          <span class="text-right">g</span>
-        </div>
-      </div>
-
+      <IntakeDisplay title="Daily meat intake" intake="{result.dailyMeatIntake}" />
+      <IntakeDisplay title="Daily bone intake" intake="{result.dailyBoneIntake}" />
+      <IntakeDisplay title="Daily oil intake" intake="{result.dailyOilIntake}" />
+      <IntakeDisplay title="Daily egg intake" intake="{result.dailyEggIntake}" />
+      <IntakeDisplay title="Daily offal intake" intake="{result.dailyOffalIntake}" />
     </div>
   </div>
   <!--{/if}-->
