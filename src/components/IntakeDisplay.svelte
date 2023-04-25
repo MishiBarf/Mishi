@@ -2,8 +2,20 @@
 
   import { type IntakeType } from "../core/calculator";
 
-  export let intake: IntakeType;
+  let description = "";
+  export let intake: IntakeType = 0;
   export let title: string;
+  export let multiplicator = 1;
+
+
+  $: {
+    const have = intake * multiplicator;
+    if (have >= 1000) {
+      description = `${have / 1000} kg`;
+    } else {
+      description = `${have} g`;
+    }
+  }
 </script>
 
 
@@ -18,4 +30,9 @@
       <span class="text-right">g</span>
     {/if}
   </div>
+  {#if multiplicator > 1 && intake > 0}
+    <div class="stat-desc">
+      Total: <strong>{description}</strong>
+    </div>
+  {/if}
 </div>

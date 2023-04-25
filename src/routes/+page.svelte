@@ -7,6 +7,7 @@
   let sex = undefined;
   let weight = 0;
   let age = 0;
+  let mealCount = 1;
   $: {
     disableButton = weight <= 1 || age < 0 || !["male", "female"].includes(sex?.toLowerCase());
   }
@@ -38,11 +39,16 @@
       <input type="number" placeholder="Age" class="input input-bordered w-full max-w-xs" min="0" bind:value={age} />
     </div>
 
-    <select class="select w-full max-w-xs select-bordered" bind:value={sex}>
-      <option disabled selected>Sex</option>
-      <option>Female</option>
-      <option>Male</option>
-    </select>
+    <div class="form-control w-full max-w-xs">
+      <label class="label">
+        <span class="label-text">Cat'sex</span>
+      </label>
+      <select class="select w-full max-w-xs select-bordered" bind:value={sex}>
+        <option disabled selected>Select an option</option>
+        <option>Female</option>
+        <option>Male</option>
+      </select>
+    </div>
 
     <div class="form-control w-full max-w-xs">
       <label class="label">
@@ -52,18 +58,25 @@
              bind:value={weight} />
     </div>
 
+    <div class="form-control w-full max-w-xs">
+      <label class="label">
+        <span class="label-text">Number of meals</span>
+      </label>
+      <input type="number" placeholder="Weight" class="input input-bordered w-full max-w-xs" min="1" max="100"
+             bind:value={mealCount} />
+    </div>
+
     <button class="btn" on:click={doCalculations} disabled={disableButton}>Calculate !</button>
   </div>
 
   <!--{#if statsVisible}-->
   <div class="grid grid-cols-1 gap-1 pt-24">
     <div class="stats shadow mx-auto content-center stats-vertical lg:stats-horizontal">
-
-      <IntakeDisplay title="Daily meat intake" intake="{result.dailyMeatIntake}" />
-      <IntakeDisplay title="Daily bone intake" intake="{result.dailyBoneIntake}" />
-      <IntakeDisplay title="Daily oil intake" intake="{result.dailyOilIntake}" />
-      <IntakeDisplay title="Daily egg intake" intake="{result.dailyEggIntake}" />
-      <IntakeDisplay title="Daily offal intake" intake="{result.dailyOffalIntake}" />
+      <IntakeDisplay title="Daily meat intake" intake="{result.dailyMeatIntake}" multiplicator="{mealCount}" />
+      <IntakeDisplay title="Daily bone intake" intake="{result.dailyBoneIntake}" multiplicator="{mealCount}" />
+      <IntakeDisplay title="Daily oil intake" intake="{result.dailyOilIntake}" multiplicator="{mealCount}" />
+      <IntakeDisplay title="Daily egg intake" intake="{result.dailyEggIntake}" multiplicator="{mealCount}" />
+      <IntakeDisplay title="Daily offal intake" intake="{result.dailyOffalIntake}" multiplicator="{mealCount}" />
     </div>
   </div>
   <!--{/if}-->
