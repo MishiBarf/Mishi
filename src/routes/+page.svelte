@@ -76,7 +76,7 @@
       <IntakeDisplay title="Daily bone intake" intake="{result.dailyBoneIntake}" multiplicator="{mealCount}" />
       <IntakeDisplay title="Daily oil intake" intake="{result.dailyOilIntake}" multiplicator="{mealCount}" />
       <IntakeDisplay title="Daily egg intake" intake="{result.dailyEggIntake}" multiplicator="{mealCount}" />
-      <IntakeDisplay title="Daily offal intake" intake="{result.dailyOffalIntake}" multiplicator="{mealCount}" />
+      <IntakeDisplay title="Daily offal intake" intake="{result.dailyOffalIntake}" multiplicator="{mealCount}" class="stat" />
     </div>
   </div>
   <!--{/if}-->
