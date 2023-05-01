@@ -1,5 +1,6 @@
 <script lang="ts">
   import IntakeDisplay from "../components/IntakeDisplay.svelte";
+	import WeightInput from "../components/WeightInput.svelte";
   import { calculateCatIntakes, type CalculatorOutput, type Measurements, type Sex } from "../core/calculator";
 
   let disableButton : boolean;
@@ -73,13 +74,7 @@
       </select>
     </div>
 
-    <div class="form-control w-full max-w-xs">
-      <label class="label">
-        <span class="label-text">Cat's weight (in g)</span>
-      </label>
-      <input type="number" placeholder="Weight" class="input input-bordered w-full max-w-xs" min="0"
-             bind:value={weight} />
-    </div>
+    <WeightInput measurements={measurements} bind:weight={weight} />
 
     <div class="form-control w-full max-w-xs">
       <label class="label">

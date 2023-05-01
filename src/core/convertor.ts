@@ -1,9 +1,11 @@
 import type { Measurements } from "./calculator";
 
 
-const G_TO_OZ_RATIO = 0.03527396195;
+export const G_TO_OZ_RATIO = 0.03527396195;
 
-const OZ_TO_LB_RATIO = 16;
+export const OZ_TO_LB_RATIO = 16;
+
+export const LB_TO_G_RATIO = 453.6;
 
 export function formatGrams(grams: number, measure: Measurements) {
     if (measure === 'metric') {
