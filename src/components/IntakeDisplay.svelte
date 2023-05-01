@@ -1,38 +1,22 @@
 <script lang="ts">
+	import type { IntakeType, Measurements } from '../core/calculator';
+	import { formatGrams, gramsToOunces, ouncesToPounds } from '../core/convertor';
 
-  import { type IntakeType } from "../core/calculator";
+	export let intake: IntakeType = 0;
+	export let title: string;
+	export let multiplicator = 1;
+	export let measurements: Measurements = 'metric';
 
-  let description = "";
-  export let intake: IntakeType = 0;
-  export let title: string;
-  export let multiplicator = 1;
-
-
-  $: {
-    const have = intake * multiplicator;
-    if (have >= 1000) {
-      description = `${have / 1000} kg`;
-    } else {
-      description = `${have} g`;
-    }
-  }
 </script>
 
-
 <div class="stat">
-  <div class="stat-title">{title}</div>
-  <div class="stat-value">
-    {#if intake >= 1000}
-      {intake / 1000}
-      <span class="text-right">kg</span>
-    {:else }
-      {intake}
-      <span class="text-right">g</span>
-    {/if}
-  </div>
-  {#if multiplicator > 1 && intake > 0}
-    <div class="stat-desc">
-      Total: <strong>{description}</strong>
-    </div>
-  {/if}
+	<div class="stat-title">{title}</div>
+	<div class="stat-value">
+    {formatGrams(intake, measurements)}
+	</div>
+	{#if multiplicator > 1 && intake > 0}
+		<div class="stat-desc">
+			Total: <strong>{formatGrams(intake * multiplicator, measurements)}</strong>
+		</div>
+	{/if}
 </div>

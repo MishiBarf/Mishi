@@ -38,10 +38,13 @@ export function calculateCatIntakes({ sex, age, weight }: CalculatorInput): Calc
 export interface CalculatorInput {
   age: number;
   weight: number;
-  sex: "male" | "female";
+  sex: Sex;
 }
 
+export type Sex = "male" | "female";
 export type IntakeType = number;
+export type Measurements = "metric" | "imperial";
+
 
 export interface CalculatorOutput {
   dailyMeatIntake: IntakeType;
