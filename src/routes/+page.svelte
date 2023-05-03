@@ -1,103 +1,12 @@
-<script lang="ts">
-  import IntakeDisplay from "../components/IntakeDisplay.svelte";
-	import WeightInput from "../components/WeightInput.svelte";
-  import { calculateCatIntakes, type CalculatorOutput, type Measurements, type Sex } from "../core/calculator";
-
-  let disableButton : boolean;
-  let statsVisible = false;
-  let sex : Sex = "male";
-  let weight = 0;
-  let age = 0;
-  let mealCount = 1;
-  let measurements : Measurements = "metric";
-
-  $: {
-    disableButton = weight <= 1 || age < 0 || !["male", "female"].includes(sex.toLowerCase());
-  }
-
-  let result: CalculatorOutput = {
-    dailyMeatIntake: 0,
-    dailyOffalIntake: 0,
-    dailyEggIntake: 0,
-    dailyOilIntake: 0,
-    dailyBoneIntake: 0
-  };
-
-  function doCalculations() {
-    result = calculateCatIntakes({ sex, weight, age });
-    statsVisible = true;
-  }
+<script>
+  import Navbar from "../components/Navbar.svelte";
+  import Calculator from "../components/Calculator.svelte";
+  import Footer from "../components/Footer.svelte";
 </script>
 
-<div class="dropdown dropdown-end float-right pt-6 pr-6">
-  <label tabindex="0" class="btn btn-circle btn-ghost btn-xs text-info">
-    <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
-         xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z"
-        stroke-linecap="round" stroke-linejoin="round"></path>
-      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
-    </svg>
-  </label>
-  <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-    <li class="menu-title">
-      <span>Measurements</span>
-    </li>
-    <li class:bordered={measurements === "metric"} on:click={() => measurements = "metric"} ><a>Metric (g/kg)</a></li>
-    <li class:bordered={measurements === "imperial"} on:click={() => measurements = "imperial"}><a>Imperial (oz/lb)</a></li>
-<!--    <li class="menu-title">-->
-<!--      <span>Language</span>-->
-<!--    </li>-->
-  </ul>
+<div class="flex flex-col h-screen">
+  <Navbar />
+  <Calculator />
+  <Footer />
 </div>
 
-<div class="container mx-auto pt-24">
-
-  <div class="grid grid-cols-1 gap-2 w-80 mx-auto">
-    <h1 class="card-title">Mishi</h1>
-
-    <div class="form-control w-full max-w-xs">
-      <label class="label">
-        <span class="label-text">Cat's age</span>
-      </label>
-      <input type="number" placeholder="Age" class="input input-bordered w-full max-w-xs" min="0" bind:value={age} />
-    </div>
-
-    <div class="form-control w-full max-w-xs">
-      <label class="label">
-        <span class="label-text">Cat'sex</span>
-      </label>
-      <select class="select w-full max-w-xs select-bordered" bind:value={sex}>
-        <option disabled selected>Select an option</option>
-        <option>Female</option>
-        <option>Male</option>
-      </select>
-    </div>
-
-    <WeightInput measurements={measurements} bind:weight={weight} />
-
-    <div class="form-control w-full max-w-xs">
-      <label class="label">
-        <span class="label-text">Number of meals</span>
-      </label>
-      <input type="number" placeholder="Weight" class="input input-bordered w-full max-w-xs" min="1" max="100"
-             bind:value={mealCount} />
-    </div>
-
-    <button class="btn" on:click={doCalculations} disabled={disableButton}>Calculate !</button>
-  </div>
-
-  <!--{#if statsVisible}-->
-  <div class="grid grid-cols-1 gap-1 pt-24">
-    <div class="stats shadow mx-auto content-center stats-vertical lg:stats-horizontal">
-      <IntakeDisplay title="Daily meat intake" intake="{result.dailyMeatIntake}" multiplicator="{mealCount}" measurements={measurements} />
-      <IntakeDisplay title="Daily bone intake" intake="{result.dailyBoneIntake}" multiplicator="{mealCount}" measurements={measurements} />
-      <IntakeDisplay title="Daily oil intake" intake="{result.dailyOilIntake}" multiplicator="{mealCount}" measurements={measurements} />
-      <IntakeDisplay title="Daily egg intake" intake="{result.dailyEggIntake}" multiplicator="{mealCount}" measurements={measurements} />
-      <IntakeDisplay title="Daily offal intake" intake="{result.dailyOffalIntake}" multiplicator="{mealCount}" measurements={measurements}
-                     class="stat" />
-    </div>
-  </div>
-  <!--{/if}-->
-
-</div>
