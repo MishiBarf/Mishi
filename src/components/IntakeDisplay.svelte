@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { formatGrams } from '../core/convertor';
-	import type { IntakeType, Measurements } from "../core/types";
+	import type { IntakeType, Measurements } from '../core/types';
 
 	export let intake: IntakeType = 0;
 	export let title: string;

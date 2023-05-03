@@ -1,4 +1,4 @@
-import type { CalculatorInput, CalculatorOutput, IntakeType } from "./types";
+import type { CalculatorInput, CalculatorOutput, IntakeType } from './types';
 
 const smartKg = (x: number): IntakeType => {
 	return Math.round(x);
