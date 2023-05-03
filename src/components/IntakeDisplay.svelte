@@ -6,10 +6,6 @@
 	export let title: string;
 	export let multiplicator = 1;
 	export let measurements: Measurements = 'metric';
-
-	$: {
-		console.log(measurements)
-	}
 </script>
 
 <div class="stat">

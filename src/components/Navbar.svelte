@@ -1,41 +1,18 @@
 <script>
   import { measurements } from "../core/stores";
+  import { page } from "$app/stores";
 </script>
 
 
 <div class="navbar bg-base-100 bg-neutral">
-  <div class="navbar-start">
-<!--    The dropdown could come in handy later -->
-<!--    <div class="dropdown">-->
-<!--      <label tabindex="0" class="btn btn-ghost btn-circle">-->
-<!--        <svg-->
-<!--          xmlns="http://www.w3.org/2000/svg"-->
-<!--          class="h-5 w-5"-->
-<!--          fill="none"-->
-<!--          viewBox="0 0 24 24"-->
-<!--          stroke="currentColor"-->
-<!--        >-->
-<!--          <path-->
-<!--            stroke-linecap="round"-->
-<!--            stroke-linejoin="round"-->
-<!--            stroke-width="2"-->
-<!--            d="M4 6h16M4 12h16M4 18h7"-->
-<!--          />-->
-<!--        </svg-->
-<!--        >-->
-<!--      </label>-->
-<!--      <ul-->
-<!--        tabindex="0"-->
-<!--        class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"-->
-<!--      >-->
-<!--        <li><a>Homepage</a></li>-->
-<!--        <li><a>Portfolio</a></li>-->
-<!--        <li><a>About</a></li>-->
-<!--      </ul>-->
-<!--    </div>-->
+  <div class="navbar-start text-neutral-content">
+    <ul class="menu menu-horizontal px-1">
+      <li class:text-accent={$page.url.pathname === "/"} ><a href="/" >Calculator</a></li>
+      <li class:text-accent={$page.url.pathname === "/blog"}><a href="/blog" >Blog</a></li>
+    </ul>
   </div>
   <div class="navbar-center text-neutral-content">
-    <h1 class="text-xl">Mishi</h1>
+    <a href="/" class="text-xl">Mishi</a>
   </div>
   <div class="navbar-end">
     <button class="dropdown dropdown-end">
