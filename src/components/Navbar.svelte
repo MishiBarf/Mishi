@@ -14,7 +14,7 @@
 		<a href="/" class="text-xl">Mishi</a>
 	</div>
 	<div class="navbar-end">
-		<button class="dropdown dropdown-end">
+		<div class="dropdown dropdown-end">
 			<button tabindex="0" class="btn btn-circle btn-ghost btn-sm text-neutral-content">
 				<svg
 					aria-hidden="true"
@@ -47,6 +47,6 @@
 					<button on:click={() => measurements.set('imperial')}>Imperial (oz/lb)</button>
 				</li>
 			</ul>
-		</button>
+		</div>
 	</div>
 </div>
