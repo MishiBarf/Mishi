@@ -23,7 +23,7 @@ export function calculateCatIntakes({ sex, age, weight }: CalculatorInput): Dail
 
 	return {
 		meat: smartWeight(totalIntake * 0.64),
-		bone: smartWeight(totalIntake * 0.20),
+		bone: smartWeight(totalIntake * 0.2),
 		liver: smartWeight(totalIntake * 0.03),
 		otherOrgans: smartWeight(totalIntake * 0.03),
 		vegetables: smartWeight(totalIntake * 0.1)
