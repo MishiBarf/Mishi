@@ -1,35 +1,31 @@
-import type { CalculatorInput, CalculatorOutput, IntakeType } from './types';
+import type { CalculatorInput, DailyIntakes, Grams } from './types';
 
-const smartKg = (x: number): IntakeType => {
+const smartWeight = (x: number): Grams => {
 	return Math.round(x);
 };
 
-export function calculateCatIntakes({ sex, age, weight }: CalculatorInput): CalculatorOutput {
-	let dailyMeatIntake = 0;
+export function calculateCatIntakes({ sex, age, weight }: CalculatorInput): DailyIntakes {
+	let totalIntake = 0;
 
 	if (sex === 'male') {
 		if (age < 1) {
-			dailyMeatIntake = weight * 0.1;
-		} else if (age < 7) {
-			dailyMeatIntake = weight * 0.03;
+			totalIntake = weight * 0.06;
 		} else {
-			dailyMeatIntake = weight * 0.02;
+			totalIntake = weight * 0.03;
 		}
 	} else {
 		if (age < 1) {
-			dailyMeatIntake = weight * 0.1;
+			totalIntake = weight * 0.06;
 		} else if (age < 7) {
-			dailyMeatIntake = weight * 0.25;
-		} else {
-			dailyMeatIntake = weight * 0.015;
+			totalIntake = weight * 0.025;
 		}
 	}
 
 	return {
-		dailyMeatIntake: smartKg(dailyMeatIntake),
-		dailyBoneIntake: smartKg(dailyMeatIntake * 0.1),
-		dailyOilIntake: smartKg(dailyMeatIntake * 0.05),
-		dailyEggIntake: smartKg(dailyMeatIntake * 0.05),
-		dailyOffalIntake: smartKg(dailyMeatIntake * 0.05)
+		meat: smartWeight(totalIntake * 0.64),
+		bone: smartWeight(totalIntake * 0.20),
+		liver: smartWeight(totalIntake * 0.03),
+		otherOrgans: smartWeight(totalIntake * 0.03),
+		vegetables: smartWeight(totalIntake * 0.1)
 	};
 }

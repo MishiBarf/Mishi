@@ -5,13 +5,13 @@ export interface CalculatorInput {
 }
 
 export type Sex = 'male' | 'female';
-export type IntakeType = number;
+export type Grams = number;
 export type Measurements = 'metric' | 'imperial';
 
-export interface CalculatorOutput {
-	dailyMeatIntake: IntakeType;
-	dailyBoneIntake: IntakeType;
-	dailyOilIntake: IntakeType;
-	dailyEggIntake: IntakeType;
-	dailyOffalIntake: IntakeType;
+export interface DailyIntakes {
+	meat: Grams;
+	bone: Grams;
+	liver: Grams;
+	otherOrgans: Grams;
+	vegetables: Grams;
 }

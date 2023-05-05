@@ -2,7 +2,7 @@
 	import IntakeDisplay from '../components/IntakeDisplay.svelte';
 	import WeightInput from '../components/WeightInput.svelte';
 	import { calculateCatIntakes } from '../core/calculator';
-	import type { CalculatorOutput, Sex } from '../core/types';
+	import type { DailyIntakes, Sex } from '../core/types';
 	import { measurements } from '../core/stores';
 
 	let disableButton: boolean;
@@ -16,12 +16,12 @@
 		disableButton = weight <= 1 || age < 0 || !['male', 'female'].includes(sex.toLocaleLowerCase());
 	}
 
-	let result: CalculatorOutput = {
-		dailyMeatIntake: 0,
-		dailyOffalIntake: 0,
-		dailyEggIntake: 0,
-		dailyOilIntake: 0,
-		dailyBoneIntake: 0
+	let result: DailyIntakes = {
+		meat: 0,
+		vegetables: 0,
+		otherOrgans: 0,
+		liver: 0,
+		bone: 0
 	};
 
 	function doCalculations() {
@@ -81,32 +81,32 @@
 	<div class="grid grid-cols-1 gap-1 pt-24">
 		<div class="stats shadow mx-auto content-center stats-vertical lg:stats-horizontal">
 			<IntakeDisplay
-				title="Daily meat intake"
-				intake={result.dailyMeatIntake}
+				title="Meat"
+				intake={result.meat}
 				multiplicator={mealCount}
 				measurements={$measurements}
 			/>
 			<IntakeDisplay
-				title="Daily bone intake"
-				intake={result.dailyBoneIntake}
+				title="Bone"
+				intake={result.bone}
 				multiplicator={mealCount}
 				measurements={$measurements}
 			/>
 			<IntakeDisplay
-				title="Daily oil intake"
-				intake={result.dailyOilIntake}
+				title="Liver"
+				intake={result.liver}
 				multiplicator={mealCount}
 				measurements={$measurements}
 			/>
 			<IntakeDisplay
-				title="Daily egg intake"
-				intake={result.dailyEggIntake}
+				title="Other organs"
+				intake={result.otherOrgans}
 				multiplicator={mealCount}
 				measurements={$measurements}
 			/>
 			<IntakeDisplay
-				title="Daily offal intake"
-				intake={result.dailyOffalIntake}
+				title="Vegetables"
+				intake={result.vegetables}
 				multiplicator={mealCount}
 				measurements={$measurements}
 			/>
