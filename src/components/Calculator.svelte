@@ -7,7 +7,6 @@
 
 	let disableButton: boolean;
 	let statsVisible = false;
-	let sex: Sex = 'male';
 	let weight = 0;
 	let age = 0;
 	let mealCount = 1;
@@ -25,7 +24,7 @@
 	};
 
 	function doCalculations() {
-		result = calculateCatIntakes({ sex, weight, age });
+		result = calculateCatIntakes({ weight, age });
 		statsVisible = true;
 	}
 </script>
@@ -44,17 +43,6 @@
 				min="0"
 				bind:value={age}
 			/>
-		</div>
-
-		<div class="form-control w-full max-w-xs">
-			<label class="label" for="cat_sex">
-				<span class="label-text">Cat'sex</span>
-			</label>
-			<select id="cat_sex" class="select w-full max-w-xs select-bordered" bind:value={sex}>
-				<option disabled selected>Select an option</option>
-				<option value="female">Female</option>
-				<option value="male">Male</option>
-			</select>
 		</div>
 
 		<WeightInput measurements={$measurements} bind:weight />

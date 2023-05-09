@@ -4,22 +4,8 @@ const smartWeight = (x: number): Grams => {
 	return Math.round(x);
 };
 
-export function calculateCatIntakes({ sex, age, weight }: CalculatorInput): DailyIntakes {
-	let totalIntake = 0;
-
-	if (sex === 'male') {
-		if (age < 1) {
-			totalIntake = weight * 0.06;
-		} else {
-			totalIntake = weight * 0.03;
-		}
-	} else {
-		if (age < 1) {
-			totalIntake = weight * 0.06;
-		} else if (age < 7) {
-			totalIntake = weight * 0.025;
-		}
-	}
+export function calculateCatIntakes({ age, weight }: CalculatorInput): DailyIntakes {
+	const totalIntake = age < 1 ? weight * 0.06 :  weight * 0.03;
 
 	return {
 		meat: smartWeight(totalIntake * 0.64),
