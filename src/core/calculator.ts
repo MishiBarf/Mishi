@@ -5,13 +5,15 @@ const smartWeight = (x: number): Grams => {
 };
 
 export function calculateCatIntakes({ age, weight }: CalculatorInput): DailyIntakes {
-	const totalIntake = age < 1 ? weight * 0.06 :  weight * 0.03;
+	const totalIntake = age < 1 ? weight * 0.06 : weight * 0.03;
 
 	return {
 		meat: smartWeight(totalIntake * 0.64),
 		bone: smartWeight(totalIntake * 0.2),
 		liver: smartWeight(totalIntake * 0.03),
 		otherOrgans: smartWeight(totalIntake * 0.03),
-		vegetables: smartWeight(totalIntake * 0.1)
+		vegetables: smartWeight(totalIntake * 0.1),
+		eggCount: 1 / 7,
+		fishOil: 1
 	};
 }

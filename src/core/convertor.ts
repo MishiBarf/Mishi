@@ -9,19 +9,26 @@ export const LB_TO_G_RATIO = 453.6;
 export const WEIGHT_FORMATTER = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 2 });
 
 export function formatGrams(grams: number, measure: Measurements) {
-	if (measure === 'metric') {
-		if (grams >= 1000) {
-			return `${grams / 1000} kg`;
+	switch (measure) {
+		case 'metric': {
+			if (grams >= 1000) {
+				return `${grams / 1000} kg`;
+			}
+			return `${WEIGHT_FORMATTER.format(grams)} g`;
 		}
-		return `${WEIGHT_FORMATTER.format(grams)} g`;
-	}
+		case 'egg':
+			return WEIGHT_FORMATTER.format(grams);
+		case 'ts':
+			return grams == 1 ? '1 tbsp' : `${grams} tbsp`;
+		default: {
+			const oz = gramsToOunces(grams);
 
-	const oz = gramsToOunces(grams);
-
-	if (oz >= OZ_TO_LB_RATIO) {
-		return `${WEIGHT_FORMATTER.format(ouncesToPounds(oz))} lb`;
+			if (oz >= OZ_TO_LB_RATIO) {
+				return `${WEIGHT_FORMATTER.format(ouncesToPounds(oz))} lb`;
+			}
+			return `${WEIGHT_FORMATTER.format(oz)} oz`;
+		}
 	}
-	return `${WEIGHT_FORMATTER.format(oz)} oz`;
 }
 
 export function gramsToOunces(grams: number) {

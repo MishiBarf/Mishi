@@ -5,6 +5,7 @@
 	export let intake: Grams = 0;
 	export let title: string;
 	export let multiplicator = 1;
+
 	export let measurements: Measurements = 'metric';
 </script>
 

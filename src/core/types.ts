@@ -4,7 +4,8 @@ export interface CalculatorInput {
 }
 
 export type Grams = number;
-export type Measurements = 'metric' | 'imperial';
+export type TableSpoon = number;
+export type Measurements = 'metric' | 'imperial' | 'ts' | 'egg';
 
 export interface DailyIntakes {
 	meat: Grams;
@@ -12,4 +13,6 @@ export interface DailyIntakes {
 	liver: Grams;
 	otherOrgans: Grams;
 	vegetables: Grams;
+	fishOil: TableSpoon;
+	eggCount: number;
 }

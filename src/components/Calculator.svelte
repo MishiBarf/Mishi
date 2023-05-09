@@ -2,7 +2,7 @@
 	import IntakeDisplay from '../components/IntakeDisplay.svelte';
 	import WeightInput from '../components/WeightInput.svelte';
 	import { calculateCatIntakes } from '../core/calculator';
-	import type { DailyIntakes, Sex } from '../core/types';
+	import type { DailyIntakes } from '../core/types';
 	import { measurements } from '../core/stores';
 
 	let disableButton: boolean;
@@ -12,7 +12,7 @@
 	let mealCount = 1;
 
 	$: {
-		disableButton = weight <= 1 || age < 0 || !['male', 'female'].includes(sex.toLocaleLowerCase());
+		disableButton = weight <= 1 || age < 0;
 	}
 
 	let result: DailyIntakes = {
@@ -20,7 +20,9 @@
 		vegetables: 0,
 		otherOrgans: 0,
 		liver: 0,
-		bone: 0
+		bone: 0,
+		fishOil: 0,
+		eggCount: 0
 	};
 
 	function doCalculations() {
@@ -97,6 +99,18 @@
 				intake={result.vegetables}
 				multiplicator={mealCount}
 				measurements={$measurements}
+			/>
+			<IntakeDisplay
+				title="Fish oil"
+				intake={result.fishOil}
+				multiplicator={mealCount}
+				measurements="ts"
+			/>
+			<IntakeDisplay
+				title="Eggs"
+				intake={result.eggCount}
+				multiplicator={mealCount}
+				measurements="egg"
 			/>
 		</div>
 	</div>
