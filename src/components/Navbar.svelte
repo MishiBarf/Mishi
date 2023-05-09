@@ -8,6 +8,7 @@
 		<ul class="menu menu-horizontal px-1">
 			<li class:text-accent={$page.url.pathname === '/'}><a href="/">Calculator</a></li>
 			<li class:text-accent={$page.url.pathname === '/blog'}><a href="/blog">Blog</a></li>
+			<li><a href="/">Feedback</a></li>
 		</ul>
 	</div>
 	<div class="navbar-center text-neutral-content">
