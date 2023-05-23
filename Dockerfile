@@ -1,4 +1,4 @@
-FROM node:19.8.1-alpine AS builder
+FROM node:20-alpine AS builder
 
 WORKDIR /home/mishi
 
@@ -12,5 +12,4 @@ RUN apk update && apk upgrade
 
 COPY --from=builder /home/mishi/build /static/
 
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
