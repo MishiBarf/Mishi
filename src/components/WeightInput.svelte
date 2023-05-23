@@ -7,7 +7,7 @@
 	export let weight = 0;
 	$: {
 		if (measurements === 'metric') {
-			weight = _weight;
+			weight = _weight * 1000;
 		} else {
 			weight = _weight * LB_TO_G_RATIO;
 		}
@@ -16,7 +16,7 @@
 
 <div class="form-control w-full max-w-xs">
 	<label class="label" for="cat_weight">
-		<span class="label-text">Cat's weight (in {measurements === 'metric' ? 'g' : 'lb'})</span>
+		<span class="label-text">Cat's weight (in {measurements === 'metric' ? 'kg' : 'lb'})</span>
 	</label>
 	<input
 		id="cat_weight"
