@@ -11,3 +11,5 @@ FROM flashspys/nginx-static:latest
 RUN apk update && apk upgrade
 
 COPY --from=builder /home/mishi/build /static/
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
