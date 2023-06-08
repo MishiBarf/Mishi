@@ -1,6 +1,10 @@
 <template>
+  <svg>
+    <use xlink:href="fr.svg"></use>
+  </svg>
+
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header>
       <q-toolbar>
         <q-btn
           flat
@@ -10,12 +14,49 @@
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
-
+        <q-space></q-space>
         <q-toolbar-title>
-          Quasar App
+          Mishi
         </q-toolbar-title>
+        <q-btn-dropdown stretch flat dropdown-icon="settings">
+          <q-list>
+            <q-item-label header>Measurements</q-item-label>
+            <q-item v-for="u in Units" :key="u" clickable @click="setUnit(u)">
+              <q-item-section>
+                <q-item-label>{{ u }}</q-item-label>
+              </q-item-section>
+              <q-item-section side v-if="unit == u">
+                <q-icon name="check" color="primary"/>
+              </q-item-section>
+            </q-item>
+            <q-separator inset spaced/>
+            <q-item-label header>Language</q-item-label>
+            <q-item clickable>
+              <q-item-section avatar>
+                <q-icon name="svguse:fr.svg" color="primary"/>
+              </q-item-section>
+              <q-item-section>
+                <q-item-label>English</q-item-label>
+              </q-item-section>
+              <q-item-section avatar>
+                <q-icon name="check" color="primary"/>
+              </q-item-section>
+            </q-item>
+            <!--            <q-item v-for="n in 3" :key="`y.${n}`" clickable v-close-popup tabindex="0">-->
+            <!--              <q-item-section avatar>-->
+            <!--                <q-avatar icon="assignment" color="primary" text-color="white"/>-->
+            <!--              </q-item-section>-->
+            <!--              <q-item-section>-->
+            <!--                <q-item-label>Vacation</q-item-label>-->
+            <!--                <q-item-label caption>February 22, 2016</q-item-label>-->
+            <!--              </q-item-section>-->
+            <!--              <q-item-section side>-->
+            <!--                <q-icon name="info"/>-->
+            <!--              </q-item-section>-->
+            <!--            </q-item>-->
+          </q-list>
+        </q-btn-dropdown>
 
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
@@ -28,88 +69,51 @@
         <q-item-label
           header
         >
-          Essential Links
+          Navigation
         </q-item-label>
-
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
       </q-list>
     </q-drawer>
 
+    <q-footer>
+      <q-toolbar>
+        <p class="text-center text-caption q-pl-sm q-mb-none">Copyright Mishi © 2023 - All right reserved</p>
+        <q-space/>
+        <q-btn flat round icon="mdi-facebook" href="https://www.facebook.com/profile.php?id=100091655991190"
+               target="_blank"></q-btn>
+        <q-btn flat round icon="mdi-instagram" href="https://www.instagram.com/mishi_barf/" target="_blank"></q-btn>
+      </q-toolbar>
+    </q-footer>
+
     <q-page-container>
-      <router-view />
+      <router-view/>
     </q-page-container>
   </q-layout>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import EssentialLink from 'components/EssentialLink.vue';
+import {defineComponent, ref} from 'vue';
+import {Units} from "src/logic/constants";
+import {useUnitStore} from "stores/unit-store";
+import {storeToRefs} from "pinia";
 
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-];
 
 export default defineComponent({
   name: 'MainLayout',
+  components: {},
 
-  components: {
-    EssentialLink
-  },
-
-  setup () {
+  setup() {
     const leftDrawerOpen = ref(false)
+    const store = useUnitStore();
+    const {unit} = storeToRefs(store);
 
     return {
-      essentialLinks: linksList,
+      Units,
+      unit,
       leftDrawerOpen,
-      toggleLeftDrawer () {
+      setUnit: store.setUnit,
+      toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value
-      }
+      },
     }
   }
 });
