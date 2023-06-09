@@ -1,21 +1,17 @@
 <template>
   <q-page class="row items-center justify-evenly">
-<!--    <example-component-->
-<!--      title="Example component"-->
-<!--      active-->
-<!--      :todos="todos"-->
-<!--      :meta="meta"-->
-<!--    ></example-component>-->
+    <calculator-component ></calculator-component>
   </q-page>
 </template>
 
 <script lang="ts">
 import { Todo, Meta } from 'components/models';
 import { defineComponent, ref } from 'vue';
+import CalculatorComponent from 'components/CalculatorComponent.vue';
 
 export default defineComponent({
   name: 'IndexPage',
-  components: {  },
+  components: {CalculatorComponent},
   setup () {
     const todos = ref<Todo[]>([
       {

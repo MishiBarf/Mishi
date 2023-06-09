@@ -1,56 +1,41 @@
 <template>
-  <div>
+  <q-form class="q-gutter-md">
+    <activity-level-component></activity-level-component>
+    <weight-input-component></weight-input-component>
+    <q-input
+      type="number"
+      v-model="mealCount"
+      min="1"
+      :label="$t('inputs.mealCount')"
+    >
 
-  </div>
+    </q-input>
+    <q-btn
+      :label="$t('inputs.calculate')"
+      color="primary" ></q-btn>
+  </q-form>
 </template>
 
 <script lang="ts">
 import {
   defineComponent,
-  PropType,
-  computed,
-  ref,
-  toRef,
-  Ref,
 } from 'vue';
-import { Todo, Meta } from './models';
+import WeightInputComponent from 'components/WeightInputComponent.vue';
+import ActivityLevelComponent from 'components/ActivityLevelComponent.vue';
+import {useCalculatorStore} from 'stores/calculator-store';
+import {storeToRefs} from 'pinia';
 
-function useClickCount() {
-  const clickCount = ref(0);
-  function increment() {
-    clickCount.value += 1
-    return clickCount.value;
-  }
-
-  return { clickCount, increment };
-}
-
-function useDisplayTodo(todos: Ref<Todo[]>) {
-  const todoCount = computed(() => todos.value.length);
-  return { todoCount };
-}
 
 export default defineComponent({
-  name: 'ExampleComponent',
-  props: {
-    title: {
-      type: String,
-      required: true
-    },
-    todos: {
-      type: Array as PropType<Todo[]>,
-      default: () => []
-    },
-    meta: {
-      type: Object as PropType<Meta>,
-      required: true
-    },
-    active: {
-      type: Boolean
+  name: 'CalculatorComponent',
+  components: {ActivityLevelComponent, WeightInputComponent},
+  setup() {
+    const calculatorStore = useCalculatorStore();
+    const {mealCount} = storeToRefs(calculatorStore);
+
+    return {
+      mealCount
     }
-  },
-  setup (props) {
-    return { ...useClickCount(), ...useDisplayTodo(toRef(props, 'todos')) };
-  },
+  }
 });
 </script>

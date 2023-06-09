@@ -1,8 +1,4 @@
 <template>
-  <svg>
-    <use xlink:href="fr.svg"></use>
-  </svg>
-
   <q-layout view="lHh Lpr lFf">
     <q-header>
       <q-toolbar>
@@ -18,45 +14,37 @@
         <q-toolbar-title>
           Mishi
         </q-toolbar-title>
-        <q-btn-dropdown stretch flat dropdown-icon="settings">
+
+        <q-select
+          v-model="locale"
+          :options="localeOptions"
+          :label="$t('inputs.language')"
+          :dark="true"
+          :options-dark="false"
+          borderless
+          label-color="white"
+          emit-value
+          map-options
+          style="min-width: 150px"
+        >
+          <template v-slot:prepend>
+            <q-icon name="translate"/>
+          </template>
+        </q-select>
+
+        <q-btn-dropdown stretch flat dropdown-icon="settings" >
           <q-list>
-            <q-item-label header>Measurements</q-item-label>
-            <q-item v-for="u in Units" :key="u" clickable @click="setUnit(u)">
+            <q-item-label header> {{ $t('inputs.measurements') }}</q-item-label>
+            <q-item v-for="u in Measurements" :key="u" clickable @click="setMeasurement(u)">
               <q-item-section>
-                <q-item-label>{{ u }}</q-item-label>
+                <q-item-label>{{ $t(`measurements.${u}`) }}</q-item-label>
               </q-item-section>
-              <q-item-section side v-if="unit == u">
+              <q-item-section :class="{'invisible': measurement != u}" side >
                 <q-icon name="check" color="primary"/>
               </q-item-section>
             </q-item>
-            <q-separator inset spaced/>
-            <q-item-label header>Language</q-item-label>
-            <q-item clickable>
-              <q-item-section avatar>
-                <q-icon name="svguse:fr.svg" color="primary"/>
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>English</q-item-label>
-              </q-item-section>
-              <q-item-section avatar>
-                <q-icon name="check" color="primary"/>
-              </q-item-section>
-            </q-item>
-            <!--            <q-item v-for="n in 3" :key="`y.${n}`" clickable v-close-popup tabindex="0">-->
-            <!--              <q-item-section avatar>-->
-            <!--                <q-avatar icon="assignment" color="primary" text-color="white"/>-->
-            <!--              </q-item-section>-->
-            <!--              <q-item-section>-->
-            <!--                <q-item-label>Vacation</q-item-label>-->
-            <!--                <q-item-label caption>February 22, 2016</q-item-label>-->
-            <!--              </q-item-section>-->
-            <!--              <q-item-section side>-->
-            <!--                <q-icon name="info"/>-->
-            <!--              </q-item-section>-->
-            <!--            </q-item>-->
           </q-list>
         </q-btn-dropdown>
-
       </q-toolbar>
     </q-header>
 
@@ -66,9 +54,7 @@
       bordered
     >
       <q-list>
-        <q-item-label
-          header
-        >
+        <q-item-label header>
           Navigation
         </q-item-label>
       </q-list>
@@ -92,9 +78,10 @@
 
 <script lang="ts">
 import {defineComponent, ref} from 'vue';
-import {Units} from "src/logic/constants";
-import {useUnitStore} from "stores/unit-store";
-import {storeToRefs} from "pinia";
+import {Measurements} from 'src/logic/constants';
+import {storeToRefs} from 'pinia';
+import {useI18n} from 'vue-i18n';
+import {useMeasurementStore} from 'stores/measurement-store';
 
 
 export default defineComponent({
@@ -103,14 +90,25 @@ export default defineComponent({
 
   setup() {
     const leftDrawerOpen = ref(false)
-    const store = useUnitStore();
-    const {unit} = storeToRefs(store);
+    const store = useMeasurementStore();
+    const {measurement} = storeToRefs(store);
+    const {locale, t} = useI18n({useScope: 'global'});
+
 
     return {
-      Units,
-      unit,
+      Measurements,
+      measurement,
+      locale,
+      localeOptions: [
+        {value: 'en-US', label: 'English'},
+        {value: 'fr', label: 'Français'}
+      ],
+      measurementOptions: Measurements.map(name => ({
+        label: t(`measurements.${name}`),
+        value: name
+      })),
       leftDrawerOpen,
-      setUnit: store.setUnit,
+      setMeasurement: store.setMeasurement,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value
       },
