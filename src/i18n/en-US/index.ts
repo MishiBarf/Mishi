@@ -1,11 +1,11 @@
 export default {
   inputs: {
-    catWeight: 'Cat\'s weight',
+    catWeight: "Cat's weight",
     calculate: 'Calculate',
     mealCount: 'Number of meals',
     measurements: 'Measurements',
     language: 'Language',
-    activityLevel: 'Level of activity'
+    activityLevel: 'Level of activity',
   },
   maintenance: {
     LowActivity: 'Low',
@@ -16,6 +16,6 @@ export default {
   },
   measurements: {
     metric: 'Metric (g/kg)',
-    imperial: 'Imperial (oz/lb)'
-  }
+    imperial: 'Imperial (oz/lb)',
+  },
 };

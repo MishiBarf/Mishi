@@ -1,5 +1,5 @@
-import {defineStore} from 'pinia';
-import type {MeasurementSystem} from 'src/logic/constants';
+import { defineStore } from 'pinia';
+import type { MeasurementSystem } from 'src/logic/constants';
 
 export const useMeasurementStore = defineStore('measurement', {
   state: () => ({

@@ -8,12 +8,11 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent} from 'vue';
-import {useCalculatorStore} from 'stores/calculator-store';
-import {storeToRefs} from 'pinia';
-import {useMeasurementStore} from 'stores/measurement-store';
-import {Weight} from 'src/logic/Weight';
-
+import { computed, defineComponent } from 'vue';
+import { useCalculatorStore } from 'stores/calculator-store';
+import { storeToRefs } from 'pinia';
+import { useMeasurementStore } from 'stores/measurement-store';
+import { Weight } from 'src/logic/Weight';
 
 export default defineComponent({
   name: 'WeightInputComponent',
@@ -23,22 +22,27 @@ export default defineComponent({
         return this.calcStore.weight.convertTo(this.suffix);
       },
       set(value: number) {
-        const nwValue = this.measurementStore.measurement === 'metric' ? Weight.kilograms(value) : Weight.pounds(value);
-        this.calcStore.$patch({weight: nwValue});
-      }
+        const nwValue =
+          this.measurementStore.measurement === 'metric'
+            ? Weight.kilograms(value)
+            : Weight.pounds(value);
+        this.calcStore.$patch({ weight: nwValue });
+      },
     },
   },
   setup() {
     const calcStore = useCalculatorStore();
     const measurementStore = useMeasurementStore();
-    const {weight} = storeToRefs(calcStore);
+    const { weight } = storeToRefs(calcStore);
 
     return {
       weight,
       calcStore,
       measurementStore,
-      suffix: computed(() => measurementStore.measurement === 'metric' ? 'kg' : 'lb')
-    }
-  }
+      suffix: computed(() =>
+        measurementStore.measurement === 'metric' ? 'kg' : 'lb'
+      ),
+    };
+  },
 });
 </script>

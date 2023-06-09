@@ -1,14 +1,14 @@
-import {MeasurementSystem, WeightUnitType} from 'src/logic/constants';
+import { MeasurementSystem, WeightUnitType } from 'src/logic/constants';
 
 const OuncesToGramsRatio = 28.3495;
 const PoundsToGramsRatio = 453.592;
 
-const NumberFormatter = Intl.NumberFormat('fr-Fr', {minimumFractionDigits: 2});
+const NumberFormatter = Intl.NumberFormat('fr-Fr', {
+  minimumFractionDigits: 2,
+});
 
 export class Weight {
-
-  private constructor(private _grams: number) {
-  }
+  private constructor(private _grams: number) {}
 
   public metricString(unit: MeasurementSystem) {
     if (unit === 'metric') {
@@ -47,5 +47,4 @@ export class Weight {
   public static kilograms(kg: number) {
     return new Weight(kg * 1000);
   }
-
 }
