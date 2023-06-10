@@ -11,7 +11,7 @@
           @click="toggleLeftDrawer"
         />
         <q-space></q-space>
-        <q-toolbar-title> Mishi </q-toolbar-title>
+        <q-toolbar-title> Mishi</q-toolbar-title>
 
         <q-select
           v-model="locale"
@@ -53,7 +53,8 @@
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <q-item-label header> Navigation </q-item-label>
+        <q-item-label header> Navigation</q-item-label>
+        <EssentialLink v-for="link in links" :key="link.title" v-bind="link" />
       </q-list>
     </q-drawer>
 
@@ -92,10 +93,32 @@ import { Measurements } from 'src/logic/constants';
 import { storeToRefs } from 'pinia';
 import { useI18n } from 'vue-i18n';
 import { useMeasurementStore } from 'stores/measurement-store';
+import EssentialLink from 'components/EssentialLink.vue';
+
+const links = [
+  {
+    title: 'navigation.home',
+    caption: '',
+    icon: 'home',
+    link: '#/',
+  },
+  {
+    title: 'navigation.blog',
+    caption: '',
+    icon: 'rss_feed',
+    link: '#/blog',
+  },
+  // {
+  //   title: 'navigation.feedback',
+  //   caption: '',
+  //   icon: 'rate_review',
+  //   link: '#/'
+  // },
+];
 
 export default defineComponent({
   name: 'MainLayout',
-  components: {},
+  components: { EssentialLink },
 
   setup() {
     const leftDrawerOpen = ref(false);
@@ -120,6 +143,7 @@ export default defineComponent({
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
+      links,
     };
   },
 });

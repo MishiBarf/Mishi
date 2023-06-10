@@ -18,4 +18,9 @@ export default {
     metric: 'Metric (g/kg)',
     imperial: 'Imperial (oz/lb)',
   },
+  navigation: {
+    home: 'Home',
+    blog: 'Blog',
+    feedback: 'Feedback',
+  },
 };

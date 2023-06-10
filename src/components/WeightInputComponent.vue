@@ -3,6 +3,7 @@
     :label="$t('inputs.catWeight')"
     v-model="value"
     type="number"
+    min="0"
     :suffix="suffix"
   ></q-input>
 </template>
