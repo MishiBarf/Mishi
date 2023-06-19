@@ -3,9 +3,9 @@ import { MaintenanceType } from 'src/logic/constants';
 import { Weight } from 'src/logic/Weight';
 
 export interface CalculatorState {
-  maintenance: MaintenanceType,
-  weight: Weight,
-  mealCount: number
+  maintenance: MaintenanceType;
+  weight: Weight;
+  mealCount: number;
 }
 
 export const useCalculatorStore = defineStore('calculator', {
@@ -15,12 +15,12 @@ export const useCalculatorStore = defineStore('calculator', {
     mealCount: 1,
   }),
   getters: {
-    state() : CalculatorState {
+    state(): CalculatorState {
       return {
         maintenance: this.maintenance,
         weight: this.weight as Weight,
-        mealCount: this.mealCount
-      }
-    }
-  }
+        mealCount: this.mealCount,
+      };
+    },
+  },
 });

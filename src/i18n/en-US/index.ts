@@ -22,7 +22,7 @@ export default {
     home: 'Home',
     blog: 'Blog',
     feedback: 'Feedback',
-    navigation: 'Navigation'
+    navigation: 'Navigation',
   },
   result: {
     daily: 'Daily: ',
@@ -33,6 +33,6 @@ export default {
     otherOrgans: 'Other organs',
     vegetables: 'Vegetables',
     fishOil: 'Fish oil',
-    eggs: 'Eggs'
-  }
+    eggs: 'Eggs',
+  },
 };

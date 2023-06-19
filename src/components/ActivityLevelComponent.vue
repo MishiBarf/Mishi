@@ -17,19 +17,23 @@ import { useI18n } from 'vue-i18n';
 
 export default defineComponent({
   name: 'ActivityLevelComponent',
-  setup() {
-    const calculatorStore = useCalculatorStore();
-    const { maintenance } = storeToRefs(calculatorStore);
-    const { t } = useI18n();
-
-    return {
-      value: maintenance,
-      options: Object.entries(Maintenances).map(([key, value]) => {
+  computed: {
+    options() {
+      const { t } = useI18n();
+      return Object.entries(Maintenances).map(([key, value]) => {
         return {
           label: t(`maintenance.${key}`) + ` (${value}%)`,
           value: key,
         };
-      }),
+      });
+    },
+  },
+  setup() {
+    const calculatorStore = useCalculatorStore();
+    const { maintenance } = storeToRefs(calculatorStore);
+
+    return {
+      value: maintenance,
     };
   },
 });

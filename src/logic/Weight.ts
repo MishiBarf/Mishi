@@ -35,8 +35,6 @@ export class Weight {
     }
   }
 
-
-
   public static grams(grams: number) {
     return new Weight(grams);
   }

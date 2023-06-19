@@ -38,8 +38,8 @@ export default defineComponent({
 
     newTab: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 });
 </script>

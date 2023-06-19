@@ -9,28 +9,34 @@
       :label="$t('inputs.mealCount')"
     >
     </q-input>
-    <calculator-button-component @calculate="data => $emit('calculate', data)" ></calculator-button-component>
+    <calculator-button-component
+      @calculate="(data) => $emit('calculate', data)"
+    ></calculator-button-component>
   </q-form>
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import { defineComponent } from 'vue';
 import WeightInputComponent from 'components/WeightInputComponent.vue';
 import ActivityLevelComponent from 'components/ActivityLevelComponent.vue';
-import {useCalculatorStore} from 'stores/calculator-store';
-import {storeToRefs} from 'pinia';
+import { useCalculatorStore } from 'stores/calculator-store';
+import { storeToRefs } from 'pinia';
 import CalculatorButtonComponent from 'components/CalculateButtonComponent.vue';
 
 export default defineComponent({
   name: 'CalculatorComponent',
-  components: {CalculatorButtonComponent, ActivityLevelComponent, WeightInputComponent},
+  components: {
+    CalculatorButtonComponent,
+    ActivityLevelComponent,
+    WeightInputComponent,
+  },
   setup() {
     const calculatorStore = useCalculatorStore();
-    const {mealCount} = storeToRefs(calculatorStore);
+    const { mealCount } = storeToRefs(calculatorStore);
 
     return {
       mealCount,
-      store: calculatorStore
+      store: calculatorStore,
     };
   },
 });

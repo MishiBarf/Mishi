@@ -91,8 +91,8 @@ const links = [
     title: 'navigation.feedback',
     icon: 'lightbulb',
     link: 'https://forms.gle/9cHuvLU6Rt6us4Gv6',
-    newTab: true
-  }
+    newTab: true,
+  },
   // {
   //   title: 'navigation.feedback',
   //   caption: '',
@@ -118,7 +118,7 @@ export default defineComponent({
       localeOptions: [
         { value: 'en-US', label: 'English' },
         { value: 'fr', label: 'Français' },
-        { value: 'es-ES', label: 'Español'}
+        { value: 'es-ES', label: 'Español' },
       ],
       measurementOptions: Measurements.map((name) => ({
         label: t(`measurements.${name}`),
