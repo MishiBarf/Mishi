@@ -11,7 +11,7 @@
           @click="toggleLeftDrawer"
         />
         <q-space></q-space>
-        <q-toolbar-title> Mishi</q-toolbar-title>
+        <q-toolbar-title>Mishi</q-toolbar-title>
 
         <q-select
           v-model="locale"
@@ -34,7 +34,7 @@
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <q-item-label header> Navigation</q-item-label>
+        <q-item-label header>{{ $t('navigation.navigation') }}</q-item-label>
         <EssentialLink v-for="link in links" :key="link.title" v-bind="link" />
       </q-list>
     </q-drawer>
@@ -79,16 +79,20 @@ import EssentialLink from 'components/EssentialLink.vue';
 const links = [
   {
     title: 'navigation.home',
-    caption: '',
     icon: 'home',
     link: '#/',
   },
   {
     title: 'navigation.blog',
-    caption: '',
     icon: 'rss_feed',
     link: '#/blog',
   },
+  {
+    title: 'navigation.feedback',
+    icon: 'lightbulb',
+    link: 'https://forms.gle/9cHuvLU6Rt6us4Gv6',
+    newTab: true
+  }
   // {
   //   title: 'navigation.feedback',
   //   caption: '',
@@ -114,6 +118,7 @@ export default defineComponent({
       localeOptions: [
         { value: 'en-US', label: 'English' },
         { value: 'fr', label: 'Français' },
+        { value: 'es-ES', label: 'Español'}
       ],
       measurementOptions: Measurements.map((name) => ({
         label: t(`measurements.${name}`),

@@ -3,6 +3,7 @@
     :clickable="$route.path !== link.slice(1)"
     tag="a"
     :href="link"
+    :target="newTab ? '_blank' : ''"
     :active="$route.path === link.slice(1)"
   >
     <q-item-section v-if="icon" avatar>
@@ -11,7 +12,6 @@
 
     <q-item-section>
       <q-item-label>{{ $t(title) }}</q-item-label>
-      <!--      <q-item-label caption>{{ $t(caption) }}</q-item-label>-->
     </q-item-section>
   </q-item>
 </template>
@@ -26,12 +26,6 @@ export default defineComponent({
       type: String,
       required: true,
     },
-
-    caption: {
-      type: String,
-      default: '',
-    },
-
     link: {
       type: String,
       default: '#',
@@ -41,6 +35,11 @@ export default defineComponent({
       type: String,
       default: '',
     },
+
+    newTab: {
+      type: Boolean,
+      default: false
+    }
   },
 });
 </script>

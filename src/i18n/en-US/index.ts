@@ -22,6 +22,7 @@ export default {
     home: 'Home',
     blog: 'Blog',
     feedback: 'Feedback',
+    navigation: 'Navigation'
   },
   result: {
     daily: 'Daily: ',
