@@ -20,7 +20,7 @@ export default defineComponent({
   computed: {
     value: {
       get() {
-        return this.calcStore.weight.convertTo(this.suffix);
+        return Number.parseFloat(this.calcStore.weight.convertTo(this.suffix).toFixed(2));
       },
       set(value: number) {
         const nwValue =

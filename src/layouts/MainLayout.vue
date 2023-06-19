@@ -29,25 +29,6 @@
             <q-icon name="translate" />
           </template>
         </q-select>
-
-        <q-btn-dropdown stretch flat dropdown-icon="settings">
-          <q-list>
-            <q-item-label header> {{ $t('inputs.measurements') }}</q-item-label>
-            <q-item
-              v-for="u in Measurements"
-              :key="u"
-              clickable
-              @click="setMeasurement(u)"
-            >
-              <q-item-section>
-                <q-item-label>{{ $t(`measurements.${u}`) }}</q-item-label>
-              </q-item-section>
-              <q-item-section :class="{ invisible: measurement != u }" side>
-                <q-icon name="check" color="primary" />
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </q-btn-dropdown>
       </q-toolbar>
     </q-header>
 
