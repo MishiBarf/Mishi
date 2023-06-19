@@ -27,7 +27,7 @@ export default defineComponent({
           this.measurementStore.measurement === 'metric'
             ? Weight.kilograms(value)
             : Weight.pounds(value);
-        this.calcStore.$patch({ weight: nwValue });
+        this.calcStore.weight = nwValue;
       },
     },
   },

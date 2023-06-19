@@ -3,6 +3,7 @@
     v-model="value"
     :options="options"
     map-options
+    emit-value
     :label="$t('inputs.activityLevel')"
   />
 </template>

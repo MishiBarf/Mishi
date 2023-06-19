@@ -9,7 +9,7 @@
       :label="$t('inputs.mealCount')"
     >
     </q-input>
-    <q-btn :label="$t('inputs.calculate')" color="primary"></q-btn>
+    <q-btn @click="$emit('calculate', store.state)" :label="$t('inputs.calculate')" color="primary"></q-btn>
   </q-form>
 </template>
 
@@ -29,6 +29,7 @@ export default defineComponent({
 
     return {
       mealCount,
+      store: calculatorStore
     };
   },
 });

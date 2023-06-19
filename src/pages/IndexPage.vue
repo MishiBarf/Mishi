@@ -1,18 +1,26 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <calculator-component></calculator-component>
+  <q-page class="column items-center justify-evenly">
+    <div>
+      <calculator-component @calculate="data => result.doCalculate(data)" ></calculator-component>
+    </div>
+    <div>
+      <result-component ref="result" ></result-component>
+    </div>
   </q-page>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import {defineComponent, ref} from 'vue';
 import CalculatorComponent from 'components/CalculatorComponent.vue';
+import ResultComponent from 'components/ResultComponent.vue';
 
 export default defineComponent({
   name: 'IndexPage',
-  components: { CalculatorComponent },
+  components: {ResultComponent, CalculatorComponent},
   setup() {
-    return {};
+    return {
+      result: ref<ResultComponent | null>(null)
+    };
   },
 });
 </script>

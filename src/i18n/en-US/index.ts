@@ -23,4 +23,15 @@ export default {
     blog: 'Blog',
     feedback: 'Feedback',
   },
+  result: {
+    daily: 'Daily: ',
+    total: 'Total: ',
+    meat: 'Meat',
+    bone: 'Bone',
+    liver: 'Liver',
+    otherOrgans: 'Other organs',
+    vegetables: 'Vegetables',
+    fishOil: 'Fish oil',
+    eggs: 'Eggs'
+  }
 };
