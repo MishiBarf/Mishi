@@ -36,7 +36,7 @@ module.exports = configure(function (/* ctx */) {
     // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [
       // 'ionicons-v4',
-      'mdi-v5',
+      'mdi-v7',
       // 'fontawesome-v6',
       // 'eva-icons',
       // 'themify',
@@ -77,9 +77,6 @@ module.exports = configure(function (/* ctx */) {
         [
           '@intlify/vite-plugin-vue-i18n',
           {
-            // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
-            // compositionOnly: false,
-
             // if you want to use named tokens in your Vue I18n messages, such as 'Hello {name}',
             // you need to set `runtimeOnly: false`
             // runtimeOnly: false,
@@ -112,7 +109,7 @@ module.exports = configure(function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: [],
+      plugins: ['Dark'],
     },
 
     // animations: 'all', // --- includes all animations

@@ -29,6 +29,7 @@
             <q-icon name="translate" />
           </template>
         </q-select>
+        <q-btn @click="$q.dark.toggle" flat dense round icon="compare"></q-btn>
       </q-toolbar>
     </q-header>
 
