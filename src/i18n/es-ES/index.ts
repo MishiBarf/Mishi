@@ -31,7 +31,7 @@ export default {
     bone: 'Hueso',
     liver: 'Hígado',
     otherOrgans: 'Otros órganos',
-    vegetables: 'Vegetales',
+    vegetables: 'Verduras',
     fishOil: 'Aceite de pescado',
     eggs: 'Huevos',
   },
