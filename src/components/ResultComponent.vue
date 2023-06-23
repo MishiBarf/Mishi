@@ -1,27 +1,27 @@
 <template>
-  <q-card flat bordered>
-    <q-card-section horizontal>
+  <q-card flat bordered class="q-mt-md q-mb-md">
+    <q-card-section :horizontal="$q.screen.gt.sm">
       <single-result-component
         title="result.meat"
         :unit="measurements.baseWeightUnit"
         :daily-value="daily.meatWeight.convertTo(measurements.baseWeightUnit)"
         :mult="totalMult"
       />
-      <q-separator vertical />
+      <q-separator :vertical="$q.screen.gt.sm" />
       <single-result-component
         title="result.bone"
         :unit="measurements.baseWeightUnit"
         :daily-value="daily.boneWeight.convertTo(measurements.baseWeightUnit)"
         :mult="totalMult"
       />
-      <q-separator vertical />
+      <q-separator :vertical="$q.screen.gt.sm" />
       <single-result-component
         title="result.liver"
         :unit="measurements.baseWeightUnit"
         :daily-value="daily.liverWeight.convertTo(measurements.baseWeightUnit)"
         :mult="totalMult"
       />
-      <q-separator vertical />
+      <q-separator :vertical="$q.screen.gt.sm" />
       <single-result-component
         title="result.otherOrgans"
         :unit="measurements.baseWeightUnit"
@@ -30,7 +30,7 @@
         "
         :mult="totalMult"
       />
-      <q-separator vertical />
+      <q-separator :vertical="$q.screen.gt.sm" />
       <single-result-component
         title="result.vegetables"
         :unit="measurements.baseWeightUnit"
@@ -39,14 +39,14 @@
         "
         :mult="totalMult"
       />
-      <q-separator vertical />
+      <q-separator :vertical="$q.screen.gt.sm" />
       <single-result-component
         title="result.fishOil"
         unit="tbsp"
         :daily-value="daily.fishOilTbsp"
         :mult="totalMult"
       />
-      <q-separator vertical />
+      <q-separator :vertical="$q.screen.gt.sm" />
       <single-result-component
         title="result.eggs"
         unit=" egg"
