@@ -1,3 +1,4 @@
+'use strict';
 /* eslint-env node */
 
 /*
@@ -9,7 +10,43 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
 const { configure } = require('quasar/wrappers');
-const path = require('path');
+const path = require('node:path');
+const fs = require('node:fs/promises');
+const marked = require('marked');
+
+const blogPath = path.join(__dirname, 'src', 'pages', 'blog');
+const routesPath = path.join(__dirname, 'src', 'router', 'blog.ts');
+
+async function buildBlog() {
+  const dir = (await fs.readdir(blogPath)).filter((s) => s.endsWith('.md'));
+  for (const file of dir) {
+    const fullName = path.join(blogPath, file);
+    const content = await fs.readFile(fullName, { encoding: 'utf-8' });
+    const asHtml = marked.parse(content, { mangle: false });
+    const outFileContent = `<template>${asHtml}</template>`;
+    const targetFile = path.join(blogPath, file.replace('.md', 'Page.vue'));
+    await fs.writeFile(targetFile, outFileContent, { encoding: 'utf-8' });
+  }
+  const components = dir
+    .map((it) => it.replace('.md', ''))
+    .map((name) => {
+      return `{
+  path: '${name.toLocaleLowerCase()}',
+  component: () => import('pages/blog/${name}Page.vue')
+}`;
+    });
+
+  await fs.writeFile(
+    routesPath,
+    `
+import { RouteRecordRaw } from 'vue-router';
+
+const blogPages: RouteRecordRaw[] = [${components.join(',\n')}]
+export default blogPages;
+`,
+    { encoding: 'utf-8' }
+  );
+}
 
 module.exports = configure(function (/* ctx */) {
   return {
@@ -63,7 +100,7 @@ module.exports = configure(function (/* ctx */) {
 
       // publicPath: '/',
       // analyze: true,
-      // env: {},
+      env: {},
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,
@@ -72,6 +109,14 @@ module.exports = configure(function (/* ctx */) {
 
       // extendViteConf (viteConf) {},
       // viteVuePluginOptions: {},
+
+      async beforeBuild(ctx) {
+        await buildBlog(ctx);
+      },
+
+      async beforeDev(ctx) {
+        await buildBlog(ctx);
+      },
 
       vitePlugins: [
         [

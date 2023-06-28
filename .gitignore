@@ -31,3 +31,10 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+
+
+# Custom
+
+# Auto-generated files at build time
+src/blog/*.vue
+src/router/blog.ts
