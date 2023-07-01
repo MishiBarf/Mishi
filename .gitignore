@@ -36,5 +36,5 @@ yarn-error.log*
 # Custom
 
 # Auto-generated files at build time
-src/blog/*.vue
+src/pages/blog/*.vue
 src/router/blog.ts

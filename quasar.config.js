@@ -13,28 +13,68 @@ const { configure } = require('quasar/wrappers');
 const path = require('node:path');
 const fs = require('node:fs/promises');
 const marked = require('marked');
+const grayMatter = require('gray-matter');
 
 const blogPath = path.join(__dirname, 'src', 'pages', 'blog');
 const routesPath = path.join(__dirname, 'src', 'router', 'blog.ts');
 
+const renderer = {
+  heading(text, level) {
+    return `<h${level + 5}>${text}</h${level + 5}>`;
+  },
+};
+
 async function buildBlog() {
+  marked.use({ renderer });
+
   const dir = (await fs.readdir(blogPath)).filter((s) => s.endsWith('.md'));
+  const dest = [];
   for (const file of dir) {
+    let options = {};
+    const hooks = {
+      preprocess(markdown) {
+        const { data, content } = grayMatter(markdown);
+        options = data;
+        return content;
+      },
+    };
+    marked.use({ hooks });
+
     const fullName = path.join(blogPath, file);
     const content = await fs.readFile(fullName, { encoding: 'utf-8' });
-    const asHtml = marked.parse(content, { mangle: false });
-    const outFileContent = `<template>${asHtml}</template>`;
+    const fileStats = await fs.stat(fullName);
     const targetFile = path.join(blogPath, file.replace('.md', 'Page.vue'));
-    await fs.writeFile(targetFile, outFileContent, { encoding: 'utf-8' });
+    const asHtml = marked.parse(content, { mangle: false });
+    const outFileContent = `<template>
+<q-page class="q-px-xxl items-center">
+  ${asHtml}
+</q-page>
+</template>
+<script setup lang="ts"></script>`;
+    dest.push({
+      name: file,
+      createdAt: fileStats.birthtime,
+      vueFile: targetFile,
+      vueTemplate: outFileContent,
+      ...options,
+    });
   }
-  const components = dir
-    .map((it) => it.replace('.md', ''))
-    .map((name) => {
-      return `{
+
+  const components = await Promise.all(
+    dest
+      .sort((a, b) => b.createdAt - a.createdAt)
+      .map(async (val) => {
+        const name = val.name.replace('.md', '');
+        await fs.writeFile(val.vueFile, val.vueTemplate, { encoding: 'utf-8' });
+        return `{
   path: '${name.toLocaleLowerCase()}',
+  meta: {createdAt: ${val.createdAt.getTime()},title: '${
+          val.title
+        }', description: \`${val.description ?? ''}\`},
   component: () => import('pages/blog/${name}Page.vue')
 }`;
-    });
+      })
+  );
 
   await fs.writeFile(
     routesPath,
