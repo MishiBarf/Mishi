@@ -2,7 +2,7 @@
   <q-page class="column items-center justify-evenly">
     <div>
       <calculator-component
-        @calculate="(data) => result.doCalculate(data)"
+        @calculate="(data) => result?.doCalculate(data)"
       ></calculator-component>
     </div>
     <div>
@@ -21,7 +21,7 @@ export default defineComponent({
   components: { ResultComponent, CalculatorComponent },
   setup() {
     return {
-      result: ref<ResultComponent | null>(null),
+      result: ref<typeof ResultComponent | null>(null),
     };
   },
 });

@@ -1,4 +1,5 @@
 import { RouteRecordRaw } from 'vue-router';
+import blogPages from './blog';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -6,7 +7,14 @@ const routes: RouteRecordRaw[] = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/IndexPage.vue') },
-      { path: '/blog', component: () => import('pages/BlogPage.vue') },
+      {
+        path: '/blog',
+        component: () => import('layouts/BlogLayout.vue'),
+        children: [
+          { path: '', component: () => import('pages/BlogPage.vue') },
+          ...blogPages,
+        ],
+      },
     ],
   },
 

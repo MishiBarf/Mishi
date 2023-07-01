@@ -14,3 +14,5 @@ export const Maintenances = {
 } as const;
 
 export type MaintenanceType = keyof typeof Maintenances;
+
+export const DefaultDateFormatter = new Intl.DateTimeFormat('fr-FR');
