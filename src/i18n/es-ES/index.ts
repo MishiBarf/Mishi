@@ -23,6 +23,8 @@ export default {
     blog: 'Blog',
     feedback: 'Comentarios',
     navigation: 'Navegación',
+    constantImprove:
+      '"Estamos constantemente buscando mejorar la calculadora para ayudar a los entusiastas del barf como nosotros. ¡Ayúdanos dando tu <a href="{0}" target="_blank" rel="noopener">opinión</a>!"',
   },
   result: {
     daily: 'Diario: ',

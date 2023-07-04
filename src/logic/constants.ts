@@ -1,3 +1,5 @@
+export const FeedbackUrl = 'https://forms.gle/9cHuvLU6Rt6us4Gv6';
+
 export const Measurements = ['metric', 'imperial'] as const;
 
 export type MeasurementSystem = (typeof Measurements)[number];
