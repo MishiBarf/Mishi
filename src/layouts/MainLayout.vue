@@ -20,7 +20,7 @@
           :hide-dropdown-icon="$q.screen.lt.md"
           label-color="white"
           :dark="true"
-          :options-dark="false"
+          :options-dark="$q.dark.isActive"
           dense
           :borderless="true"
           emit-value
