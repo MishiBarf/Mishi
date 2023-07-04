@@ -2,7 +2,7 @@ export default {
   inputs: {
     catWeight: 'Poids du chat',
     calculate: 'Calculer',
-    mealCount: 'Nombre de repas',
+    mealCount: 'Nombre de jours',
     measurements: 'Mesures',
     language: 'Langue',
     activityLevel: "Niveau d'activité",

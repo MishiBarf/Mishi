@@ -2,7 +2,7 @@ export default {
   inputs: {
     catWeight: "Cat's weight",
     calculate: 'Calculate',
-    mealCount: 'Number of meals',
+    mealCount: 'Number of days',
     measurements: 'Measurements',
     language: 'Language',
     activityLevel: 'Level of activity',

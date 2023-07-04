@@ -2,7 +2,7 @@ export default {
   inputs: {
     catWeight: 'Peso del gato',
     calculate: 'Calcular',
-    mealCount: 'Número de comidas',
+    mealCount: 'Número de días',
     measurements: 'Mediciones',
     language: 'Idioma',
     activityLevel: 'Nivel de actividad',
