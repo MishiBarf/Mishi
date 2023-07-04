@@ -4,21 +4,27 @@
       <single-result-component
         title="result.meat"
         :unit="measurements.baseWeightUnit"
-        :daily-value="daily.meatWeight.convertTo(measurements.baseWeightUnit)"
+        :daily-value="
+          Math.ceil(daily.meatWeight.convertTo(measurements.baseWeightUnit))
+        "
         :mult="totalMult"
       />
       <q-separator :vertical="$q.screen.gt.sm" />
       <single-result-component
         title="result.bone"
         :unit="measurements.baseWeightUnit"
-        :daily-value="daily.boneWeight.convertTo(measurements.baseWeightUnit)"
+        :daily-value="
+          Math.ceil(daily.boneWeight.convertTo(measurements.baseWeightUnit))
+        "
         :mult="totalMult"
       />
       <q-separator :vertical="$q.screen.gt.sm" />
       <single-result-component
         title="result.liver"
         :unit="measurements.baseWeightUnit"
-        :daily-value="daily.liverWeight.convertTo(measurements.baseWeightUnit)"
+        :daily-value="
+          Math.ceil(daily.liverWeight.convertTo(measurements.baseWeightUnit))
+        "
         :mult="totalMult"
       />
       <q-separator :vertical="$q.screen.gt.sm" />
@@ -26,7 +32,9 @@
         title="result.otherOrgans"
         :unit="measurements.baseWeightUnit"
         :daily-value="
-          daily.otherOrgansWeight.convertTo(measurements.baseWeightUnit)
+          Math.ceil(
+            daily.otherOrgansWeight.convertTo(measurements.baseWeightUnit)
+          )
         "
         :mult="totalMult"
       />

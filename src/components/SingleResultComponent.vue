@@ -4,15 +4,15 @@
     <span
       >{{ $t('result.daily') }}
       <span class="text-bold">
-        {{ NumberFormatter().format(dailyValue) }}{{ unit }}</span
-      ></span
-    >
+        {{ NumberFormatter().format(dailyValue) }}{{ unit }}
+      </span>
+    </span>
     <span v-if="mult > 1">
       {{ $t('result.total') }}
-      <span class="text-bold"
-        >{{ NumberFormatter().format(dailyValue * mult) }}{{ unit }}</span
-      ></span
-    >
+      <span class="text-bold">
+        {{ NumberFormatter().format(dailyValue * mult) }}{{ unit }}
+      </span>
+    </span>
   </q-card-section>
 </template>
 
