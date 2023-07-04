@@ -2,7 +2,7 @@ export default {
   inputs: {
     catWeight: 'Poids du chat',
     calculate: 'Calculer',
-    mealCount: 'Nombre de repas',
+    mealCount: 'Nombre de jours',
     measurements: 'Mesures',
     language: 'Langue',
     activityLevel: "Niveau d'activité",
@@ -23,6 +23,8 @@ export default {
     blog: 'Blog',
     feedback: 'Suggestions',
     navigation: 'Navigation',
+    constantImprove:
+      'Nous cherchons constamment à améliorer la calculatrice pour aider les passionnés du barf que nous sommes. Aidez-nous en donnant votre <a href="{0}" target="_blank" rel="noopener">feedback</a> !',
   },
   result: {
     daily: 'Quotidien : ',

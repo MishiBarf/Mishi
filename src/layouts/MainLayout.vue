@@ -11,7 +11,10 @@
           @click="toggleLeftDrawer"
         />
         <q-space></q-space>
-        <q-toolbar-title>Mishi</q-toolbar-title>
+        <q-toolbar-title>
+          Mishi
+          <span class="text-caption"> Beta </span>
+        </q-toolbar-title>
 
         <q-select
           v-model="locale"
@@ -20,7 +23,7 @@
           :hide-dropdown-icon="$q.screen.lt.md"
           label-color="white"
           :dark="true"
-          :options-dark="false"
+          :options-dark="$q.dark.isActive"
           dense
           :borderless="true"
           emit-value
@@ -72,7 +75,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { Measurements } from 'src/logic/constants';
+import { FeedbackUrl, Measurements } from 'src/logic/constants';
 import { storeToRefs } from 'pinia';
 import { useI18n } from 'vue-i18n';
 import { useMeasurementStore } from 'stores/measurement-store';
@@ -92,7 +95,7 @@ const links = [
   {
     title: 'navigation.feedback',
     icon: 'lightbulb',
-    link: 'https://forms.gle/9cHuvLU6Rt6us4Gv6',
+    link: FeedbackUrl,
     newTab: true,
   },
   // {

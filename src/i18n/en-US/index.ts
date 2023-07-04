@@ -2,7 +2,7 @@ export default {
   inputs: {
     catWeight: "Cat's weight",
     calculate: 'Calculate',
-    mealCount: 'Number of meals',
+    mealCount: 'Number of days',
     measurements: 'Measurements',
     language: 'Language',
     activityLevel: 'Level of activity',
@@ -23,6 +23,8 @@ export default {
     blog: 'Blog',
     feedback: 'Feedback',
     navigation: 'Navigation',
+    constantImprove:
+      'We are constantly looking to improve the calculator to help barf enthusiasts like us.\nHelp us by giving your <a href="{0}" target="_blank" rel="noopener">feedback</a> !"',
   },
   result: {
     daily: 'Daily: ',
