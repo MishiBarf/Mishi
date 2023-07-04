@@ -15,6 +15,13 @@ export const Maintenances = {
   '4To12Months': 6,
 } as const;
 
+export const IntakePercentages = {
+  meat: 0.74,
+  bone: 0.2,
+  liver: 0.03,
+  otherOrgans: 0.07,
+};
+
 export type MaintenanceType = keyof typeof Maintenances;
 
 export const DefaultDateFormatter = new Intl.DateTimeFormat('fr-FR');
