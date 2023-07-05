@@ -8,11 +8,11 @@ export default {
     activityLevel: 'Nivel de actividad',
   },
   maintenance: {
-    LowActivity: 'Baja',
+    LowActivity: 'Bajo',
     NormalActivity: 'Normal',
     HighActivity: 'Altamente activo',
-    LessThan4Months: '0 a 4 meses',
-    '4To12Months': '4 a 12 meses',
+    LessThan6Months: '0 a 6 meses',
+    Between6And18Months: '6 a 18 meses',
   },
   measurements: {
     metric: 'Métrico (g/kg)',

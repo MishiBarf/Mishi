@@ -11,8 +11,8 @@ export default {
     LowActivity: 'Faible',
     NormalActivity: 'Actif',
     HighActivity: 'Très actif',
-    LessThan4Months: '0 à 4 mois',
-    '4To12Months': '4 à 12 mois',
+    LessThan6Months: '0 à 6 mois',
+    Between6And18Months: '6 à 18 mois',
   },
   measurements: {
     metric: 'Métrique (g/kg)',

@@ -11,8 +11,8 @@ export const Maintenances = {
   LowActivity: 2,
   NormalActivity: 3,
   HighActivity: 4,
-  LessThan4Months: 9,
-  '4To12Months': 6,
+  LessThan6Months: 9,
+  Between6And18Months: 6,
 } as const;
 
 export const IntakePercentages = {
