@@ -1,6 +1,10 @@
 <template>
   <q-card-section class="column justify-start q-gutter-sm">
-    <q-tooltip anchor="top middle" self="center middle" v-if="percentage">
+    <q-tooltip
+      v-if="percentage"
+      :anchor="$q.screen.gt.sm ? 'top middle' : 'center left'"
+      :self="$q.screen.gt.sm ? 'center middle' : 'center right'"
+    >
       {{ NumberFormatter.format(percentage * 100) }}%
     </q-tooltip>
     <span class="text-caption">{{ $t(title) }}</span>
