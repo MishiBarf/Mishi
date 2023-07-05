@@ -5,11 +5,11 @@
         @calculate="(data) => result?.doCalculate(data)"
       ></calculator-component>
     </div>
-    <div>
+    <div class="q-pb-xl">
       <result-component ref="result"></result-component>
     </div>
     <div
-      class="text-center absolute-bottom text-caption"
+      class="text-center text-caption absolute-bottom text-info"
       v-html="t('navigation.constantImprove', [FeedbackUrl()])"
     ></div>
   </q-page>
