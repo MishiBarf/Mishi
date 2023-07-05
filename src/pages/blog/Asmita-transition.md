@@ -25,3 +25,5 @@ Here are some of the benefits of a BARF diet for cats:
 If you are interested in learning more about BARF diets for cats, there are many resources available online. You can also talk to your veterinarian about whether a BARF diet is right for your cat.
 If you are concerned about the safety of a BARF diet, please talk to your veterinarian. They can help you assess your cat's individual needs and make sure that a BARF diet is the right choice for them.
 I hope this article is helpful for anyone who is considering switching their cat to a BARF diet.
+
+DC
