@@ -8,6 +8,7 @@
           Math.ceil(daily.meatWeight.convertTo(measurements.baseWeightUnit))
         "
         :mult="totalMult"
+        :percentage="IntakePercentages.meat"
       />
       <q-separator :vertical="$q.screen.gt.sm" />
       <single-result-component
@@ -17,6 +18,7 @@
           Math.ceil(daily.boneWeight.convertTo(measurements.baseWeightUnit))
         "
         :mult="totalMult"
+        :percentage="IntakePercentages.bone"
       />
       <q-separator :vertical="$q.screen.gt.sm" />
       <single-result-component
@@ -26,6 +28,7 @@
           Math.ceil(daily.liverWeight.convertTo(measurements.baseWeightUnit))
         "
         :mult="totalMult"
+        :percentage="IntakePercentages.liver"
       />
       <q-separator :vertical="$q.screen.gt.sm" />
       <single-result-component
@@ -37,6 +40,7 @@
           )
         "
         :mult="totalMult"
+        :percentage="IntakePercentages.otherOrgans"
       />
       <q-separator :vertical="$q.screen.gt.sm" />
       <single-result-component
@@ -63,9 +67,15 @@ import { useResultStore } from 'stores/result-store';
 import { storeToRefs } from 'pinia';
 import { CalculatorState } from 'stores/calculator-store';
 import { useMeasurementStore } from 'stores/measurement-store';
+import { IntakePercentages } from 'src/logic/constants';
 
 export default defineComponent({
   name: 'ResultComponent',
+  computed: {
+    IntakePercentages() {
+      return IntakePercentages;
+    },
+  },
   components: { SingleResultComponent },
   methods: {
     doCalculate(state: CalculatorState) {

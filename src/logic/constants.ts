@@ -16,7 +16,7 @@ export const Maintenances = {
 } as const;
 
 export const IntakePercentages = {
-  meat: 0.74,
+  meat: 0.7,
   bone: 0.2,
   liver: 0.03,
   otherOrgans: 0.07,
