@@ -22,6 +22,9 @@ const renderer = {
   heading(text, level) {
     return `<h${level + 5}>${text}</h${level + 5}>`;
   },
+  image(href, title, text) {
+    return `<q-img src="${href}" loading="lazy"/>`;
+  },
 };
 
 async function buildBlog() {
