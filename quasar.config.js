@@ -72,11 +72,11 @@ async function buildBlog() {
         return `{
   path: '${name.toLocaleLowerCase()}',
   meta: {createdAt: ${val.createdAt.getTime()},title: '${
-          val.title
-        }', description: \`${val.description ?? ''}\`},
+    val.title
+  }', description: \`${val.description ?? ''}\`},
   component: () => import('pages/blog/${name}Page.vue')
 }`;
-      })
+      }),
   );
 
   await fs.writeFile(
@@ -87,7 +87,7 @@ import { RouteRecordRaw } from 'vue-router';
 const blogPages: RouteRecordRaw[] = [${components.join(',\n')}]
 export default blogPages;
 `,
-    { encoding: 'utf-8' }
+    { encoding: 'utf-8' },
   );
 }
 

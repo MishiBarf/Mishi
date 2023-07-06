@@ -36,7 +36,7 @@
         :unit="measurements.baseWeightUnit"
         :daily-value="
           Math.ceil(
-            daily.otherOrgansWeight.convertTo(measurements.baseWeightUnit)
+            daily.otherOrgansWeight.convertTo(measurements.baseWeightUnit),
           )
         "
         :mult="totalMult"

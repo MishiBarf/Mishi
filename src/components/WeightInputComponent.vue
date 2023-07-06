@@ -21,7 +21,7 @@ export default defineComponent({
     value: {
       get() {
         return Number.parseFloat(
-          this.calcStore.weight.convertTo(this.suffix).toFixed(2)
+          this.calcStore.weight.convertTo(this.suffix).toFixed(2),
         );
       },
       set(value: number) {
@@ -43,7 +43,7 @@ export default defineComponent({
       calcStore,
       measurementStore,
       suffix: computed(() =>
-        measurementStore.measurement === 'metric' ? 'kg' : 'lb'
+        measurementStore.measurement === 'metric' ? 'kg' : 'lb',
       ),
     };
   },
