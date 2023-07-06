@@ -1,5 +1,6 @@
 ---
-How I Switched My Cat to a BARF Diet and the Amazing Results
+title: How I Switched My Cat to a BARF Diet and the Amazing Results
+description: How BARF can improve your cat's health
 ---
 
 My cat, Asmita, was getting fat. 😐 I had tried different brands of kibble, but nothing seemed to work. I was worried about her health, and I didn't want her to develop any health problems.
