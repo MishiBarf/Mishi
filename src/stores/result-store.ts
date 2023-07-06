@@ -26,7 +26,7 @@ export const useResultStore = defineStore('result', {
         boneWeight: Weight.grams(totalIntake * IntakePercentages.bone),
         liverWeight: Weight.grams(totalIntake * IntakePercentages.liver),
         otherOrgansWeight: Weight.grams(
-          totalIntake * IntakePercentages.otherOrgans
+          totalIntake * IntakePercentages.otherOrgans,
         ),
         eggsCount: 1 / 7,
         fishOilTbsp: 1,
