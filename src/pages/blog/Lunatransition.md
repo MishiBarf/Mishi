@@ -43,3 +43,5 @@ We're really happy with how the transition went for Luna. Her hair is really shi
 # Conclusion:
 
 Transitioning your cat to a raw food diet can be a great way to improve their health and well-being. By doing some research, you can make the transition smooth and easy for your cat.
+
+DC & MB
