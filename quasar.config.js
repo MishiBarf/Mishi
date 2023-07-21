@@ -51,7 +51,7 @@ async function buildBlog() {
     const targetFile = path.join(blogPath, file.replace('.md', 'Page.vue'));
     const asHtml = marked.parse(content, { mangle: false });
     const outFileContent = `<template>
-<q-page class="q-px-xxl items-center">
+<q-page class="items-center" :class="{'q-px-md' : $q.screen.lt.md, 'q-px-xxl' : $q.screen.gt.sm}">
   ${asHtml}
 </q-page>
 </template>
