@@ -32,7 +32,7 @@ We started by giving a small amount of raw food to Luna. We did this for a few d
 
 ## The Challenges We Faced:
 
-One of the challenges we faced was that Luna didn't seem to enjoy vegetables very much. We started by mixing them up with the meat but we eventually decided to separate the vegetables from the meat and organs and let her choose what she would eat. 
+One of the challenges we faced was that Luna didn't seem to enjoy vegetables very much. We started by mixing them up with the meat but we eventually decided to separate the vegetables from the meat and organs and let her choose what she would eat.
 
 Another challenge we faced was that Luna was still hungry all the time. We realised that it can take up to 18 months for a cat to reach adulthood, and that kittens need to eat more food than adult cats. We increased the amount of food we were giving Luna, and she started to feel more satiated.
 
