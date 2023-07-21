@@ -22,7 +22,7 @@ const renderer = {
   heading(text, level) {
     return `<h${level + 5}>${text}</h${level + 5}>`;
   },
-  image(href, title, text) {
+  image(href /*, _title, _text */) {
     return `<q-img src="${href}" loading="lazy"/>`;
   },
 };
