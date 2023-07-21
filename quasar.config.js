@@ -18,9 +18,11 @@ const grayMatter = require('gray-matter');
 const blogPath = path.join(__dirname, 'src', 'pages', 'blog');
 const routesPath = path.join(__dirname, 'src', 'router', 'blog.ts');
 
+const HEADER_INC = 2;
+
 const renderer = {
   heading(text, level) {
-    return `<h${level + 5}>${text}</h${level + 5}>`;
+    return `<h${level + HEADER_INC}>${text}</h${level + HEADER_INC}>`;
   },
   image(href /*, _title, _text */) {
     return `<q-img src="${href}" loading="lazy"/>`;
