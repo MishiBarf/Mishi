@@ -47,7 +47,6 @@ async function buildBlog() {
 
     const fullName = path.join(blogPath, file);
     const content = await fs.readFile(fullName, { encoding: 'utf-8' });
-    const fileStats = await fs.stat(fullName);
     const targetFile = path.join(blogPath, file.replace('.md', 'Page.vue'));
     const asHtml = marked.parse(content, { mangle: false });
     const outFileContent = `<template>
@@ -58,7 +57,7 @@ async function buildBlog() {
 <script setup lang="ts"></script>`;
     dest.push({
       name: file,
-      createdAt: fileStats.mtime,
+      createdAt: new Date(options.date),
       vueFile: targetFile,
       vueTemplate: outFileContent,
       ...options,

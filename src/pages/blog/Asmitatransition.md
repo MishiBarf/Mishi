@@ -1,6 +1,7 @@
 ---
 title: How I Switched My Cat to a BARF Diet and the Amazing Results
 description: How BARF can improve your cat's health
+date: 7 July 2023
 ---
 
 # How I Switched My Cat to a BARF Diet and the Amazing Results

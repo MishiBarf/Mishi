@@ -1,6 +1,7 @@
 ---
 title: How We Successfully Transitioned Our Cat Luna to Barf
 description: Our Experience With Homemade Barf
+date: 21 July 2023
 ---
 
 # How We Successfully Transitioned Our Cat Luna to Barf
