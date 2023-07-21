@@ -56,7 +56,7 @@ async function buildBlog() {
 <script setup lang="ts"></script>`;
     dest.push({
       name: file,
-      createdAt: fileStats.birthtime,
+      createdAt: fileStats.mtime,
       vueFile: targetFile,
       vueTemplate: outFileContent,
       ...options,
