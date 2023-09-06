@@ -11,87 +11,6 @@
 
 const { configure } = require('quasar/wrappers');
 const path = require('node:path');
-const fs = require('node:fs/promises');
-const marked = require('marked');
-const grayMatter = require('gray-matter');
-
-const blogPath = path.join(__dirname, 'src', 'pages', 'blog');
-const routesPath = path.join(__dirname, 'src', 'router', 'blog.ts');
-
-const HEADER_INC = 2;
-
-const renderer = {
-  heading(text, level) {
-    return `<h${level + HEADER_INC}>${text}</h${level + HEADER_INC}>`;
-  },
-  image(href /*, _title, _text */) {
-    return `<q-img src="${href}" loading="lazy"/>`;
-  },
-};
-
-async function buildBlog() {
-  marked.use({ renderer });
-
-  const dir = (await fs.readdir(blogPath)).filter((s) => s.endsWith('.md'));
-  const dest = [];
-  for (const file of dir) {
-    let options = {};
-    const hooks = {
-      preprocess(markdown) {
-        const { data, content } = grayMatter(markdown);
-        options = data;
-        return content;
-      },
-    };
-    marked.use({ hooks });
-
-    const fullName = path.join(blogPath, file);
-    const content = await fs.readFile(fullName, { encoding: 'utf-8' });
-    const targetFile = path.join(blogPath, file.replace('.md', 'Page.vue'));
-    const asHtml = marked.parse(content, { mangle: false });
-    const outFileContent = `<template>
-<q-page class="items-center" :class="{'q-px-md' : $q.screen.lt.md, 'q-px-xxl' : $q.screen.gt.sm}">
-  ${asHtml}
-</q-page>
-</template>
-<script setup lang="ts"></script>`;
-    dest.push({
-      name: file,
-      createdAt: new Date(options.date),
-      vueFile: targetFile,
-      vueTemplate: outFileContent,
-      ...options,
-    });
-  }
-
-  const components = await Promise.all(
-    dest
-      .sort((a, b) => b.createdAt - a.createdAt)
-      .map(async (val) => {
-        const name = val.name.replace('.md', '');
-        await fs.writeFile(val.vueFile, val.vueTemplate, { encoding: 'utf-8' });
-        return `{
-  path: '${name.toLocaleLowerCase()}',
-  meta: {createdAt: ${val.createdAt.getTime()},title: '${
-    val.title
-  }', description: \`${val.description ?? ''}\`},
-  component: () => import('pages/blog/${name}Page.vue')
-}`;
-      }),
-  );
-
-  await fs.writeFile(
-    routesPath,
-    `
-import { RouteRecordRaw } from 'vue-router';
-
-const blogPages: RouteRecordRaw[] = [${components.join(',\n')}]
-export default blogPages;
-`,
-    { encoding: 'utf-8' },
-  );
-}
-
 module.exports = configure(function (/* ctx */) {
   return {
     eslint: {
@@ -154,12 +73,12 @@ module.exports = configure(function (/* ctx */) {
       // extendViteConf (viteConf) {},
       // viteVuePluginOptions: {},
 
-      async beforeBuild(ctx) {
-        await buildBlog(ctx);
+      async beforeBuild(/*ctx*/) {
+        // Can do some pre-processing here
       },
 
-      async beforeDev(ctx) {
-        await buildBlog(ctx);
+      async beforeDev(/*ctx*/) {
+        // Can do some pre-processing here
       },
 
       vitePlugins: [

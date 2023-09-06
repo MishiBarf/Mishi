@@ -88,11 +88,6 @@ const links = [
     link: '#/',
   },
   {
-    title: 'navigation.blog',
-    icon: 'rss_feed',
-    link: '#/blog',
-  },
-  {
     title: 'navigation.feedback',
     icon: 'lightbulb',
     link: FeedbackUrl,
