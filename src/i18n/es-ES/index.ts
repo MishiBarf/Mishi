@@ -37,4 +37,7 @@ export default {
     fishOil: 'Aceite de pescado',
     eggs: 'Huevos',
   },
+  notify: {
+    cookies: 'Este sitio usa cookies para guardar tus preferencias',
+  },
 };

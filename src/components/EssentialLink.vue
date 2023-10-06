@@ -16,30 +16,25 @@
   </q-item>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+defineProps({
+  title: {
+    type: String,
+    required: true,
+  },
+  link: {
+    type: String,
+    default: '#',
+  },
 
-export default defineComponent({
-  name: 'EssentialLink',
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    link: {
-      type: String,
-      default: '#',
-    },
+  icon: {
+    type: String,
+    default: '',
+  },
 
-    icon: {
-      type: String,
-      default: '',
-    },
-
-    newTab: {
-      type: Boolean,
-      default: false,
-    },
+  newTab: {
+    type: Boolean,
+    default: false,
   },
 });
 </script>

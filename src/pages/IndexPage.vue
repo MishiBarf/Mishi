@@ -10,33 +10,37 @@
     </div>
     <div
       class="text-center text-caption absolute-bottom text-info"
-      v-html="t('navigation.constantImprove', [FeedbackUrl()])"
+      v-html="t('navigation.constantImprove', [FeedbackUrl])"
     ></div>
   </q-page>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script lang="ts" setup>
+import { ref } from 'vue';
 import CalculatorComponent from 'components/CalculatorComponent.vue';
 import ResultComponent from 'components/ResultComponent.vue';
-import { FeedbackUrl } from 'src/logic/constants';
+import { AcceptedCookiesKey, FeedbackUrl } from 'src/logic/constants';
 import { useI18n } from 'vue-i18n';
+import { useQuasar } from 'quasar';
 
-export default defineComponent({
-  name: 'IndexPage',
-  methods: {
-    FeedbackUrl() {
-      return FeedbackUrl;
-    },
-  },
-  components: { ResultComponent, CalculatorComponent },
-  setup() {
-    const { t } = useI18n();
+const { t } = useI18n();
+const $q = useQuasar();
+const result = ref<typeof ResultComponent | null>(null);
 
-    return {
-      t,
-      result: ref<typeof ResultComponent | null>(null),
-    };
-  },
-});
+const acceptedCookies = localStorage.getItem(AcceptedCookiesKey);
+if (acceptedCookies === null) {
+  $q.notify({
+    message: t('notify.cookies'),
+    timeout: 0,
+    actions: [
+      {
+        label: 'Ok',
+        color: 'white',
+        handler: () => {
+          localStorage.setItem(AcceptedCookiesKey, 'true');
+        },
+      },
+    ],
+  });
+}
 </script>
