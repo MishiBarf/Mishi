@@ -33,7 +33,7 @@
             <q-icon color="white" name="translate" />
           </template>
         </q-select>
-        <q-btn @click="$q.dark.toggle" flat dense round icon="compare"></q-btn>
+        <ThemeButtonComponent></ThemeButtonComponent>
       </q-toolbar>
     </q-header>
 
@@ -73,13 +73,12 @@
   </q-layout>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
-import { FeedbackUrl, Measurements } from 'src/logic/constants';
-import { storeToRefs } from 'pinia';
+<script lang="ts" setup>
+import { ref } from 'vue';
+import { FeedbackUrl } from 'src/logic/constants';
 import { useI18n } from 'vue-i18n';
-import { useMeasurementStore } from 'stores/measurement-store';
 import EssentialLink from 'components/EssentialLink.vue';
+import ThemeButtonComponent from 'components/buttons/ThemeButtonComponent.vue';
 
 const links = [
   {
@@ -93,44 +92,17 @@ const links = [
     link: FeedbackUrl,
     newTab: true,
   },
-  // {
-  //   title: 'navigation.feedback',
-  //   caption: '',
-  //   icon: 'rate_review',
-  //   link: '#/'
-  // },
 ];
 
-export default defineComponent({
-  name: 'MainLayout',
-  components: { EssentialLink },
+const leftDrawerOpen = ref(false);
+const { locale } = useI18n({ useScope: 'global' });
+const localeOptions = [
+  { value: 'en-US', label: 'English' },
+  { value: 'fr', label: 'Français' },
+  { value: 'es-ES', label: 'Español' },
+];
 
-  setup() {
-    const leftDrawerOpen = ref(false);
-    const store = useMeasurementStore();
-    const { measurement } = storeToRefs(store);
-    const { locale, t } = useI18n({ useScope: 'global' });
-
-    return {
-      Measurements,
-      measurement,
-      locale,
-      localeOptions: [
-        { value: 'en-US', label: 'English' },
-        { value: 'fr', label: 'Français' },
-        { value: 'es-ES', label: 'Español' },
-      ],
-      measurementOptions: Measurements.map((name) => ({
-        label: t(`measurements.${name}`),
-        value: name,
-      })),
-      leftDrawerOpen,
-      setMeasurement: store.setMeasurement,
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value;
-      },
-      links,
-    };
-  },
-});
+function toggleLeftDrawer() {
+  leftDrawerOpen.value = !leftDrawerOpen.value;
+}
 </script>

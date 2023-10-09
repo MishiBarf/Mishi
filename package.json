@@ -1,8 +1,8 @@
 {
   "name": "mishi",
   "version": "0.0.1",
-  "description": "Mishi",
-  "productName": "Mishi",
+  "description": "Mishi is a calculator to improve our Barf meal prep! We are trying to encourage learning around this diet for our feline pets 😻",
+  "productName": "Mishi barf",
   "author": "Mishi team",
   "private": true,
   "scripts": {
@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.16.4",
+    "@vueuse/core": "^10.4.1",
     "pinia": "^2.1.4",
     "quasar": "^2.12.0",
     "vue": "^3.3.4",

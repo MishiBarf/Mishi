@@ -15,29 +15,14 @@
   </q-form>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import WeightInputComponent from 'components/WeightInputComponent.vue';
-import ActivityLevelComponent from 'components/ActivityLevelComponent.vue';
-import { useCalculatorStore } from 'stores/calculator-store';
+<script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import CalculatorButtonComponent from 'components/CalculateButtonComponent.vue';
 
-export default defineComponent({
-  name: 'CalculatorComponent',
-  components: {
-    CalculatorButtonComponent,
-    ActivityLevelComponent,
-    WeightInputComponent,
-  },
-  setup() {
-    const calculatorStore = useCalculatorStore();
-    const { mealCount } = storeToRefs(calculatorStore);
+import { useCalculatorStore } from 'stores/calculator-store';
+import WeightInputComponent from 'components/inputs/WeightInputComponent.vue';
+import ActivityLevelComponent from 'components/inputs/ActivityLevelComponent.vue';
+import CalculatorButtonComponent from 'components/buttons/CalculateButtonComponent.vue';
 
-    return {
-      mealCount,
-      store: calculatorStore,
-    };
-  },
-});
+const store = useCalculatorStore();
+const { mealCount } = storeToRefs(store);
 </script>

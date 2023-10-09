@@ -60,36 +60,21 @@
   </q-card>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script lang="ts" setup>
 import SingleResultComponent from 'components/SingleResultComponent.vue';
 import { useResultStore } from 'stores/result-store';
 import { storeToRefs } from 'pinia';
-import { CalculatorState } from 'stores/calculator-store';
 import { useMeasurementStore } from 'stores/measurement-store';
 import { IntakePercentages } from 'src/logic/constants';
+import { CalculatorState } from 'stores/calculator-store';
 
-export default defineComponent({
-  name: 'ResultComponent',
-  computed: {
-    IntakePercentages() {
-      return IntakePercentages;
-    },
-  },
-  components: { SingleResultComponent },
-  methods: {
-    doCalculate(state: CalculatorState) {
-      this.store.calculateResult(state);
-    },
-  },
-  setup() {
-    const measurements = useMeasurementStore();
-    const result = useResultStore();
-    return {
-      store: result,
-      measurements,
-      ...storeToRefs(result),
-    };
+const measurements = useMeasurementStore();
+const resStore = useResultStore();
+const { totalMult, daily } = storeToRefs(resStore);
+
+defineExpose({
+  doCalculate(state: CalculatorState) {
+    resStore.calculateResult(state);
   },
 });
 </script>

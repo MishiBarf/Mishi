@@ -37,4 +37,7 @@ export default {
     fishOil: 'Fish oil',
     eggs: 'Eggs',
   },
+  notify: {
+    cookies: 'This website uses cookies to save you preferences',
+  },
 };

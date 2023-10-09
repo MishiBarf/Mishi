@@ -9,10 +9,10 @@
       <q-list>
         <q-item-label header> {{ $t('inputs.measurements') }}</q-item-label>
         <q-item
-          v-for="u in Measurements()"
+          v-for="u in Measurements"
           :key="u"
           clickable
-          @click="setMeasurement(u)"
+          @click="measStore.setMeasurement(u)"
         >
           <q-item-section>
             <q-item-label>{{ $t(`measurements.${u}`) }}</q-item-label>
@@ -27,41 +27,18 @@
     <q-btn
       color="primary"
       :label="$t('inputs.calculate')"
-      @click="$emit('calculate', store.state)"
+      @click="$emit('calculate', calcStore.state)"
     ></q-btn>
   </q-btn-group>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script lang="ts" setup>
 import { useCalculatorStore } from 'stores/calculator-store';
 import { Measurements } from 'src/logic/constants';
 import { useMeasurementStore } from 'stores/measurement-store';
 import { storeToRefs } from 'pinia';
-import { useI18n } from 'vue-i18n';
 
-export default defineComponent({
-  name: 'CalculatorButtonComponent',
-  methods: {
-    Measurements() {
-      return Measurements;
-    },
-  },
-  setup() {
-    const { t } = useI18n({ useScope: 'global' });
-    const calculatorStore = useCalculatorStore();
-    const store = useMeasurementStore();
-    const { measurement } = storeToRefs(store);
-
-    return {
-      store: calculatorStore,
-      measurement,
-      setMeasurement: store.setMeasurement,
-      measurementOptions: Measurements.map((name) => ({
-        label: t(`measurements.${name}`),
-        value: name,
-      })),
-    };
-  },
-});
+const calcStore = useCalculatorStore();
+const measStore = useMeasurementStore();
+const { measurement } = storeToRefs(measStore);
 </script>
